@@ -166,7 +166,7 @@ const platforms = [
 
 // Coin properties
 const coins = [];
-const coinSize = 60;  // Increased size for better visibility
+const coinSize = 40;  // Reduced from 60 to 40
 const coinColor = '#FFD700';  // Gold color
 
 // Create coins
