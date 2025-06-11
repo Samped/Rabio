@@ -168,6 +168,7 @@ const platforms = [
 const coins = [];
 const coinSize = 40;  // Reduced from 60 to 40
 const coinColor = '#FFD700';  // Gold color
+let coinFlip = 0;  // Track flip angle
 
 // Create coins
 function createCoins() {
@@ -198,53 +199,53 @@ function createCoins() {
     coins.push({ x: 5400, y: canvas.height - 550 - coinSize, width: coinSize, height: coinSize, collected: false });
     
     // Sixth section coins (Ultimate)
-    coins.push({ x: 6000, y: canvas.height - 250 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 6000, y: canvas.height - 650 - coinSize, width: coinSize, height: coinSize, collected: false });
     coins.push({ x: 6200, y: canvas.height - 400 - coinSize, width: coinSize, height: coinSize, collected: false });
-    coins.push({ x: 6400, y: canvas.height - 550 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 6200, y: canvas.height - 750 - coinSize, width: coinSize, height: coinSize, collected: false });
     
     // Seventh section coins (Legendary)
     coins.push({ x: 7000, y: canvas.height - 250 - coinSize, width: coinSize, height: coinSize, collected: false });
     coins.push({ x: 7200, y: canvas.height - 400 - coinSize, width: coinSize, height: coinSize, collected: false });
-    coins.push({ x: 7400, y: canvas.height - 550 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 7400, y: canvas.height - 650 - coinSize, width: coinSize, height: coinSize, collected: false });
     
     // Eighth section coins (Mythic)
     coins.push({ x: 8000, y: canvas.height - 250 - coinSize, width: coinSize, height: coinSize, collected: false });
-    coins.push({ x: 8200, y: canvas.height - 400 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 8200, y: canvas.height - 600 - coinSize, width: coinSize, height: coinSize, collected: false });
     coins.push({ x: 8400, y: canvas.height - 550 - coinSize, width: coinSize, height: coinSize, collected: false });
     
     // Ninth section coins (Divine)
     coins.push({ x: 9000, y: canvas.height - 250 - coinSize, width: coinSize, height: coinSize, collected: false });
-    coins.push({ x: 9200, y: canvas.height - 400 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 9200, y: canvas.height - 650 - coinSize, width: coinSize, height: coinSize, collected: false });
     coins.push({ x: 9400, y: canvas.height - 550 - coinSize, width: coinSize, height: coinSize, collected: false });
     
     // Tenth section coins (Celestial)
-    coins.push({ x: 10000, y: canvas.height - 250 - coinSize, width: coinSize, height: coinSize, collected: false });
-    coins.push({ x: 10200, y: canvas.height - 400 - coinSize, width: coinSize, height: coinSize, collected: false });
-    coins.push({ x: 10400, y: canvas.height - 550 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 10000, y: canvas.height - 350 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 10200, y: canvas.height - 600 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 10400, y: canvas.height - 750 - coinSize, width: coinSize, height: coinSize, collected: false });
     
     // Eleventh section coins (Cosmic)
-    coins.push({ x: 11000, y: canvas.height - 250 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 11000, y: canvas.height - 100 - coinSize, width: coinSize, height: coinSize, collected: false });
     coins.push({ x: 11200, y: canvas.height - 400 - coinSize, width: coinSize, height: coinSize, collected: false });
     coins.push({ x: 11400, y: canvas.height - 550 - coinSize, width: coinSize, height: coinSize, collected: false });
     
     // Twelfth section coins (Infinite)
-    coins.push({ x: 12000, y: canvas.height - 250 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 12000, y: canvas.height - 150 - coinSize, width: coinSize, height: coinSize, collected: false });
     coins.push({ x: 12200, y: canvas.height - 400 - coinSize, width: coinSize, height: coinSize, collected: false });
     coins.push({ x: 12400, y: canvas.height - 550 - coinSize, width: coinSize, height: coinSize, collected: false });
     
     // Thirteenth section coins (Eternal)
-    coins.push({ x: 13000, y: canvas.height - 250 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 13000, y: canvas.height - 350 - coinSize, width: coinSize, height: coinSize, collected: false });
     coins.push({ x: 13200, y: canvas.height - 400 - coinSize, width: coinSize, height: coinSize, collected: false });
     coins.push({ x: 13400, y: canvas.height - 550 - coinSize, width: coinSize, height: coinSize, collected: false });
     
     // Fourteenth section coins (Immortal)
-    coins.push({ x: 14000, y: canvas.height - 250 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 14000, y: canvas.height - 350 - coinSize, width: coinSize, height: coinSize, collected: false });
     coins.push({ x: 14200, y: canvas.height - 400 - coinSize, width: coinSize, height: coinSize, collected: false });
     coins.push({ x: 14400, y: canvas.height - 550 - coinSize, width: coinSize, height: coinSize, collected: false });
     
     // Fifteenth section coins (Final)
-    coins.push({ x: 15000, y: canvas.height - 250 - coinSize, width: coinSize, height: coinSize, collected: false });
-    coins.push({ x: 15200, y: canvas.height - 400 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 15000, y: canvas.height - 300 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 15200, y: canvas.height - 600 - coinSize, width: coinSize, height: coinSize, collected: false });
     coins.push({ x: 15400, y: canvas.height - 550 - coinSize, width: coinSize, height: coinSize, collected: false });
     
     // Additional coins for more coverage
@@ -265,8 +266,38 @@ function createCoins() {
     
     // Final section coins
     coins.push({ x: 15800, y: canvas.height - 300 - coinSize, width: coinSize, height: coinSize, collected: false });
-    coins.push({ x: 16000, y: canvas.height - 450 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 16000, y: canvas.height - 650 - coinSize, width: coinSize, height: coinSize, collected: false });
     coins.push({ x: 16200, y: canvas.height - 600 - coinSize, width: coinSize, height: coinSize, collected: false });
+    
+    // Additional coins for the end game - placed higher above platforms
+    coins.push({ x: 16600, y: canvas.height - 450 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 16800, y: canvas.height - 600 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 17000, y: canvas.height - 750 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 17200, y: canvas.height - 500 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 17400, y: canvas.height - 650 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 17600, y: canvas.height - 400 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 17800, y: canvas.height - 550 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 18000, y: canvas.height - 700 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 18200, y: canvas.height - 450 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 18400, y: canvas.height - 600 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 18600, y: canvas.height - 750 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 18800, y: canvas.height - 500 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 19000, y: canvas.height - 650 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 19200, y: canvas.height - 400 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 19400, y: canvas.height - 550 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 19600, y: canvas.height - 700 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 19800, y: canvas.height - 450 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 20000, y: canvas.height - 600 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 20200, y: canvas.height - 750 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 20400, y: canvas.height - 500 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 20600, y: canvas.height - 650 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 20800, y: canvas.height - 400 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 21000, y: canvas.height - 550 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 21200, y: canvas.height - 700 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 21400, y: canvas.height - 450 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 21600, y: canvas.height - 600 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 21800, y: canvas.height - 750 - coinSize, width: coinSize, height: coinSize, collected: false });
+    coins.push({ x: 22000, y: canvas.height - 500 - coinSize, width: coinSize, height: coinSize, collected: false });
 }
 
 // Player properties
@@ -448,9 +479,31 @@ function checkCoinCollection() {
 function drawCoins() {
     for (const coin of coins) {
         if (!coin.collected) {
-            // Draw the coin image
-            ctx.drawImage(coinImage, coin.x, coin.y, coin.width, coin.height);
+            // Save the current context state
+            ctx.save();
+            
+            // Move to coin's center
+            ctx.translate(coin.x + coin.width/2, coin.y + coin.height/2);
+            
+            // Flip the coin (rotate around X axis)
+            ctx.rotate(coinFlip);
+            
+            // Scale to create flip effect
+            const scale = Math.abs(Math.cos(coinFlip));
+            ctx.scale(1, scale);
+            
+            // Draw the coin image centered
+            ctx.drawImage(coinImage, -coin.width/2, -coin.height/2, coin.width, coin.height);
+            
+            // Restore the context state
+            ctx.restore();
         }
+    }
+    
+    // Update flip angle
+    coinFlip += 0.1;  // Adjust speed of flip
+    if (coinFlip >= Math.PI * 2) {
+        coinFlip = 0;  // Reset flip when it completes a full cycle
     }
 }
 
