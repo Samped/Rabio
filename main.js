@@ -11,14 +11,20 @@ const playerImage = new Image();
 playerImage.src = 'assets/player.png';
 
 const coinImage = new Image();
-coinImage.src = 'assets/gain/inco.png';  // Using the coin from assets/gain
+coinImage.src = 'assets/gain/inco.png';
+
+const gunEnemyImage = new Image();
+gunEnemyImage.src = 'assets/enemies/gun.png';
+
+const incoEnemyImage = new Image();
+incoEnemyImage.src = 'assets/enemies/inco-enemy.png';
 
 const backgroundImage = new Image();
 backgroundImage.src = 'assets/background.png';
 
 // Wait for images to load
 let imagesLoaded = 0;
-const totalImages = 3;
+const totalImages = 5;  // Updated to include both enemy images
 
 function imageLoaded() {
     imagesLoaded++;
@@ -30,6 +36,8 @@ function imageLoaded() {
 
 playerImage.onload = imageLoaded;
 coinImage.onload = imageLoaded;
+gunEnemyImage.onload = imageLoaded;
+incoEnemyImage.onload = imageLoaded;
 backgroundImage.onload = imageLoaded;
 
 // Load character image
@@ -675,10 +683,6 @@ window.addEventListener('keydown', (e) => {
     }
 });
 
-// Load enemy image
-const enemyImage = new Image();
-enemyImage.src = 'assets/enemies/gun.png';
-
 // Bullet properties
 const bullets = [];
 const bulletSpeed = 3;  // Reduced speed
@@ -689,23 +693,42 @@ const bulletMaxDistance = 400;  // Doubled maximum distance bullets can travel
 // Enemy properties
 const enemies = [
     // First section enemies (Easy)
-    { x: 800, y: canvas.height - 550 - 100, width: 100, height: 100, speed: 2, direction: 1, startX: 800, endX: 1160, platformY: canvas.height - 550 - 100, lastShot: 0, shootDelay: 2000 },  // On mid-high platform
+    { x: 800, y: canvas.height - 600 - 100, width: 100, height: 100, speed: 2, direction: 1, startX: 800, endX: 1000, platformY: canvas.height - 600 - 100, lastShot: 0, shootDelay: 2000, type: 'inco' },  // On mid-high platform
+    { x: 7200, y: canvas.height - 200 - 100, width: 100, height: 100, speed: 2, direction: 1, startX: 1200, endX: 1400, platformY: canvas.height - 200 - 100, lastShot: 0, shootDelay: 2000, type: 'gun' }, // On mid platform
+    { x: 8600, y: canvas.height - 450 - 100, width: 100, height: 100, speed: 2, direction: 1, startX: 1600, endX: 1800, platformY: canvas.height - 450 - 100, lastShot: 0, shootDelay: 2000, type: 'inco' }, // On high platform
     
-    // L-shaped section enemies (Medium)
-    { x: 3600, y: canvas.height - 600 - 100, width: 100, height: 100, speed: 3, direction: 1, startX: 3600, endX: 3840, platformY: canvas.height - 600 - 100, lastShot: 0, shootDelay: 2000 },  // On horizontal part of L
-    
+    // L-shaped section enemies (Medium) // On horizontal part of L
+    { x: 3700, y: canvas.height - 600 - 100, width: 100, height: 100, speed: 3, direction: 1, startX: 3700, endX: 3900, platformY: canvas.height - 600 - 100, lastShot: 0, shootDelay: 2000, type: 'inco' },  // On horizontal part of L
+
     // Mixed structures enemies (Hard)
-    { x: 5100, y: canvas.height - 350 - 100, width: 100, height: 100, speed: 3, direction: -1, startX: 5100, endX: 5400, platformY: canvas.height - 350 - 100, lastShot: 0, shootDelay: 2000 },  // On wide platform
-    
+    { x: 5600, y: canvas.height - 450 - 200, width: 100, height: 100, speed: 3, direction: 1, startX: 5600, endX: 5800, platformY: canvas.height - 450 - 200, lastShot: 0, shootDelay: 2000, type: 'inco' },  // On wide platform
+
     // Complex L-shaped enemies (Expert)
-    { x: 6200, y: canvas.height - 400 - 100, width: 100, height: 100, speed: 4, direction: 1, startX: 6200, endX: 6800, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000 },  // On horizontal part of L
-    
+    { x: 6200, y: canvas.height - 400 - 100, width: 100, height: 100, speed: 4, direction: 1, startX: 6200, endX: 6800, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'gun' },  // On horizontal part of L
+    { x: 6400, y: canvas.height - 400 - 100, width: 100, height: 100, speed: 4, direction: -1, startX: 6400, endX: 6200, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'inco' },  // On horizontal part of L
+    { x: 6600, y: canvas.height - 400 - 100, width: 100, height: 100, speed: 4, direction: 1, startX: 6600, endX: 7000, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'gun' },  // On horizontal part of L
+    { x: 7000, y: canvas.height - 400 - 100, width: 100, height: 100, speed: 4, direction: 1, startX: 7000, endX: 7400, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'gun' },  // On horizontal part of L
+
     // Challenge structures enemies (Master)
-    { x: 7600, y: canvas.height - 400 - 100, width: 100, height: 100, speed: 4, direction: -1, startX: 7600, endX: 7900, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000 },  // On platform
-    
-    // Additional enemy (placed further in the game)
-    { x: 1600, y: canvas.height - 200 - 100, width: 100, height: 100, speed: 2, direction: -1, startX: 1600, endX: 1780, platformY: canvas.height - 200 - 100, lastShot: 0, shootDelay: 2000 }  // On mid platform
+    { x: 7600, y: canvas.height - 400 - 100, width: 100, height: 100, speed: 4, direction: -1, startX: 7600, endX: 7900, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'gun' },  // On platform
+    { x: 7800, y: canvas.height - 400 - 100, width: 100, height: 100, speed: 4, direction: 1, startX: 7800, endX: 8200, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'inco' },  // On platform
+    { x: 8000, y: canvas.height - 400 - 100, width: 100, height: 100, speed: 4, direction: -1, startX: 8000, endX: 7800, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'gun' },  // On platform
+    { x: 8200, y: canvas.height - 400 - 100, width: 100, height: 100, speed: 4, direction: 1, startX: 8200, endX: 8600, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'inco' },  // On platform
+    { x: 8400, y: canvas.height - 400 - 100, width: 100, height: 100, speed: 4, direction: -1, startX: 8400, endX: 8200, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'gun' },  // On platform
+    { x: 8600, y: canvas.height - 400 - 100, width: 100, height: 100, speed: 4, direction: 1, startX: 8600, endX: 9000, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'inco' },  // On platform
 ];
+
+// Draw bullets
+function drawBullets() {
+    ctx.save();
+    ctx.fillStyle = bulletColor;
+    for (const bullet of bullets) {
+        ctx.beginPath();
+        ctx.arc(bullet.x, bullet.y, bullet.radius, 0, Math.PI * 2);
+        ctx.fill();
+    }
+    ctx.restore();
+}
 
 // Update enemies
 function updateEnemies() {
@@ -821,30 +844,24 @@ function updateEnemies() {
 // Draw enemies and bullets
 function drawEnemies() {
     // Draw bullets
-    ctx.save();
-    ctx.fillStyle = bulletColor;
-    for (const bullet of bullets) {
-        ctx.beginPath();
-        ctx.arc(bullet.x, bullet.y, bullet.radius, 0, Math.PI * 2);
-        ctx.fill();
-    }
-    ctx.restore();
+    drawBullets();
     
     // Draw enemies
     for (const enemy of enemies) {
-        if (enemyImage.complete) {
+        if (enemy.type === 'gun') {
+            // Draw gun enemy with flipping
             ctx.save();
-            
-            // Flip enemy based on direction
             if (enemy.direction < 0) {
                 ctx.translate(enemy.x + enemy.width, enemy.y);
                 ctx.scale(-1, 1);
-                ctx.drawImage(enemyImage, 0, 0, enemy.width, enemy.height);
+                ctx.drawImage(gunEnemyImage, 0, 0, enemy.width, enemy.height);
             } else {
-                ctx.drawImage(enemyImage, enemy.x, enemy.y, enemy.width, enemy.height);
+                ctx.drawImage(gunEnemyImage, enemy.x, enemy.y, enemy.width, enemy.height);
             }
-            
             ctx.restore();
+        } else {
+            // Draw inco enemy
+            ctx.drawImage(incoEnemyImage, enemy.x, enemy.y, enemy.width, enemy.height);
         }
     }
 }
