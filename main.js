@@ -931,7 +931,7 @@ function updateBullets() {
                 bullet.y - bullet.radius < enemy.y + enemy.height) {
                 enemies.splice(j, 1);
                 playerBullets.splice(i, 1);
-                player.score += 100;
+                player.score += 5;
                 break;
             }
         }
