@@ -170,6 +170,46 @@ const platforms = [
     { x: 21900, y: canvas.height - 300, width: brickWidth * 2, height: brickHeight * 9 },  // Tall wall
     { x: 22100, y: canvas.height - 400, width: brickWidth * 7, height: brickHeight * 2 },
     { x: 22100, y: canvas.height - 50, width: brickWidth * 7, height: brickHeight * 2 },  // Final platform
+
+    // Frame 15 platforms
+    { x: 19000, y: canvas.height - 400, width: 200, height: 20, moving: true, startY: canvas.height - 400, endY: canvas.height - 200, speed: 2, direction: -1 },
+    { x: 19500, y: canvas.height - 600, width: 200, height: 20, moving: true, startY: canvas.height - 600, endY: canvas.height - 400, speed: 2, direction: -1 },
+    { x: 20000, y: canvas.height - 800, width: 200, height: 20, moving: true, startY: canvas.height - 800, endY: canvas.height - 600, speed: 2, direction: -1 },
+
+    // Frame 16 platforms (Floating)
+    { x: 21000, y: canvas.height - 400, width: 200, height: 20, moving: true, startY: canvas.height - 400, endY: canvas.height - 200, speed: 2, direction: -1 },
+    { x: 21500, y: canvas.height - 600, width: 200, height: 20, moving: true, startY: canvas.height - 600, endY: canvas.height - 400, speed: 2, direction: -1 },
+    { x: 22000, y: canvas.height - 800, width: 200, height: 20, moving: true, startY: canvas.height - 800, endY: canvas.height - 600, speed: 2, direction: -1 },
+
+    // Frame 17 platforms (Floating)
+    { x: 23000, y: canvas.height - 400, width: 200, height: 20, moving: true, startY: canvas.height - 400, endY: canvas.height - 200, speed: 2, direction: -1 },
+    { x: 23500, y: canvas.height - 600, width: 200, height: 20, moving: true, startY: canvas.height - 600, endY: canvas.height - 400, speed: 2, direction: -1 },
+    { x: 24000, y: canvas.height - 800, width: 200, height: 20, moving: true, startY: canvas.height - 800, endY: canvas.height - 600, speed: 2, direction: -1 },
+
+    // Frame 18 platforms (Floating)
+    { x: 25000, y: canvas.height - 400, width: 200, height: 20, moving: true, startY: canvas.height - 400, endY: canvas.height - 200, speed: 2, direction: -1 },
+    { x: 25500, y: canvas.height - 600, width: 200, height: 20, moving: true, startY: canvas.height - 600, endY: canvas.height - 400, speed: 2, direction: -1 },
+    { x: 26000, y: canvas.height - 800, width: 200, height: 20, moving: true, startY: canvas.height - 800, endY: canvas.height - 600, speed: 2, direction: -1 },
+
+    // Frame 19 platforms (Floating)
+    { x: 27000, y: canvas.height - 400, width: 200, height: 20, moving: true, startY: canvas.height - 400, endY: canvas.height - 200, speed: 2, direction: -1 },
+    { x: 27500, y: canvas.height - 600, width: 200, height: 20, moving: true, startY: canvas.height - 600, endY: canvas.height - 400, speed: 2, direction: -1 },
+    { x: 28000, y: canvas.height - 800, width: 200, height: 20, moving: true, startY: canvas.height - 800, endY: canvas.height - 600, speed: 2, direction: -1 },
+
+    // Frame 20 platforms (Floating)
+    { x: 29000, y: canvas.height - 400, width: 200, height: 20, moving: true, startY: canvas.height - 400, endY: canvas.height - 200, speed: 2, direction: -1 },
+    { x: 29500, y: canvas.height - 600, width: 200, height: 20, moving: true, startY: canvas.height - 600, endY: canvas.height - 400, speed: 2, direction: -1 },
+    { x: 30000, y: canvas.height - 800, width: 200, height: 20, moving: true, startY: canvas.height - 800, endY: canvas.height - 600, speed: 2, direction: -1 },
+
+    // Frame 21 platforms (Floating)
+    { x: 31000, y: canvas.height - 400, width: 200, height: 20, moving: true, startY: canvas.height - 400, endY: canvas.height - 200, speed: 2, direction: -1 },
+    { x: 31500, y: canvas.height - 600, width: 200, height: 20, moving: true, startY: canvas.height - 600, endY: canvas.height - 400, speed: 2, direction: -1 },
+    { x: 32000, y: canvas.height - 800, width: 200, height: 20, moving: true, startY: canvas.height - 800, endY: canvas.height - 600, speed: 2, direction: -1 },
+
+    // Frame 22 platforms (Floating)
+    { x: 33000, y: canvas.height - 400, width: 200, height: 20, moving: true, startY: canvas.height - 400, endY: canvas.height - 200, speed: 2, direction: -1 },
+    { x: 33500, y: canvas.height - 600, width: 200, height: 20, moving: true, startY: canvas.height - 600, endY: canvas.height - 400, speed: 2, direction: -1 },
+    { x: 34000, y: canvas.height - 800, width: 200, height: 20, moving: true, startY: canvas.height - 800, endY: canvas.height - 600, speed: 2, direction: -1 }
 ];
 
 // Coin properties
@@ -336,7 +376,8 @@ const keys = {
     ArrowLeft: false,
     ArrowRight: false,
     ArrowUp: false,
-    Space: false
+    Space: false,
+    Enter: false
 };
 
 // Double jump timing
@@ -563,6 +604,19 @@ function updatePlayer() {
         player.y = 0;
         player.velocityY = 0;
     }
+
+    // Player shooting (Enter key)
+    if (keys.Enter && Date.now() - lastPlayerShot > playerShootDelay) {
+        playerBullets.push({
+            x: player.x + (player.facingRight ? player.width : 0),
+            y: player.y + player.height / 2,
+            direction: player.facingRight ? 1 : -1,
+            radius: bulletRadius,
+            startX: player.x + (player.facingRight ? player.width : 0),
+            color: '#0000ff' // Changed from '#ff4500' to blue
+        });
+        lastPlayerShot = Date.now();
+    }
 }
 
 // Draw a single fine brick with gradient, outline, and mortar
@@ -685,10 +739,11 @@ window.addEventListener('keydown', (e) => {
 
 // Bullet properties
 const bullets = [];
-const bulletSpeed = 3;  // Reduced speed
+const enemyBulletSpeed = 11  // Speed for enemy bullets
+const playerBulletSpeed = 13; // Speed for player bullets
 const bulletRadius = 5;
-const bulletColor = '#000000';  // Changed to black
-const bulletMaxDistance = 400;  // Doubled maximum distance bullets can travel
+const bulletColor = '#000000';
+const bulletMaxDistance = 500;
 
 // Enemy properties
 const enemies = [
@@ -697,32 +752,100 @@ const enemies = [
     { x: 7200, y: canvas.height - 200 - 100, width: 100, height: 100, speed: 2, direction: 1, startX: 1200, endX: 1400, platformY: canvas.height - 200 - 100, lastShot: 0, shootDelay: 2000, type: 'gun' }, // On mid platform
     { x: 8600, y: canvas.height - 450 - 100, width: 100, height: 100, speed: 2, direction: 1, startX: 1600, endX: 1800, platformY: canvas.height - 450 - 100, lastShot: 0, shootDelay: 2000, type: 'inco' }, // On high platform
     
-    // L-shaped section enemies (Medium) // On horizontal part of L
+    // L-shaped section enemies (Medium)
     { x: 3700, y: canvas.height - 600 - 100, width: 100, height: 100, speed: 3, direction: 1, startX: 3700, endX: 3900, platformY: canvas.height - 600 - 100, lastShot: 0, shootDelay: 2000, type: 'inco' },  // On horizontal part of L
 
     // Mixed structures enemies (Hard)
     { x: 5600, y: canvas.height - 450 - 200, width: 100, height: 100, speed: 3, direction: 1, startX: 5600, endX: 5800, platformY: canvas.height - 450 - 200, lastShot: 0, shootDelay: 2000, type: 'inco' },  // On wide platform
 
     // Complex L-shaped enemies (Expert)
-    { x: 6200, y: canvas.height - 400 - 100, width: 100, height: 100, speed: 4, direction: 1, startX: 6200, endX: 6800, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'gun' },  // On horizontal part of L
+    { x: 12200, y: canvas.height - 400 - 100, width: 100, height: 100, speed: 4, direction: 1, startX: 6200, endX: 6800, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'gun' },  // On horizontal part of L
     { x: 6400, y: canvas.height - 400 - 100, width: 100, height: 100, speed: 4, direction: -1, startX: 6400, endX: 6200, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'inco' },  // On horizontal part of L
-    { x: 6600, y: canvas.height - 400 - 100, width: 100, height: 100, speed: 4, direction: 1, startX: 6600, endX: 7000, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'gun' },  // On horizontal part of L
+    { x: 11600, y: canvas.height - 400 - 100, width: 100, height: 100, speed: 4, direction: 1, startX: 6600, endX: 7000, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'gun' },  // On horizontal part of L
     { x: 7000, y: canvas.height - 400 - 100, width: 100, height: 100, speed: 4, direction: 1, startX: 7000, endX: 7400, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'gun' },  // On horizontal part of L
 
-    // Challenge structures enemies (Master)
-    { x: 7600, y: canvas.height - 400 - 100, width: 100, height: 100, speed: 4, direction: -1, startX: 7600, endX: 7900, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'gun' },  // On platform
-    { x: 7800, y: canvas.height - 400 - 100, width: 100, height: 100, speed: 4, direction: 1, startX: 7800, endX: 8200, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'inco' },  // On platform
-    { x: 8000, y: canvas.height - 400 - 100, width: 100, height: 100, speed: 4, direction: -1, startX: 8000, endX: 7800, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'gun' },  // On platform
-    { x: 8200, y: canvas.height - 400 - 100, width: 100, height: 100, speed: 4, direction: 1, startX: 8200, endX: 8600, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'inco' },  // On platform
-    { x: 8400, y: canvas.height - 400 - 100, width: 100, height: 100, speed: 4, direction: -1, startX: 8400, endX: 8200, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'gun' },  // On platform
-    { x: 8600, y: canvas.height - 400 - 100, width: 100, height: 100, speed: 4, direction: 1, startX: 8600, endX: 9000, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'inco' },  // On platform
+    // Fourth frame enemies (3 enemies) - Walking up and down
+    { x: 16600, y: canvas.height - 800 - 1000, width: 100, height: 100, speed: 2, direction: -1, startX: 7600, endX: 7600, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'gun', vertical: true, startY: canvas.height - 400 - 100, endY: canvas.height - 200 - 100 },
+    { x: 7800, y: canvas.height - 400 - 100, width: 100, height: 100, speed: 2, direction: -1, startX: 7800, endX: 7800, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'inco', vertical: true, startY: canvas.height - 400 - 100, endY: canvas.height - 200 - 100 },
+    { x: 18000, y: canvas.height - 600 - 1000, width: 100, height: 100, speed: 2, direction: -1, startX: 8000, endX: 8000, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'gun', vertical: true, startY: canvas.height - 400 - 100, endY: canvas.height - 200 - 100 },
+        { x: 19000, y: canvas.height - 600 - 1000, width: 100, height: 100, speed: 2, direction: -1, startX: 9000, endX: 8000, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'inco', vertical: true, startY: canvas.height - 400 - 100, endY: canvas.height - 200 - 100 },
+            { x: 19500, y: canvas.height - 600 - 1000, width: 100, height: 100, speed: 2, direction: -1, startX: 10000, endX: 8000, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'gun', vertical: true, startY: canvas.height - 400 - 100, endY: canvas.height - 200 - 100 },
+                { x: 20000, y: canvas.height - 600 - 1000, width: 100, height: 100, speed: 2, direction: -1, startX: 8000, endX: 8000, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'inco', vertical: true, startY: canvas.height - 400 - 100, endY: canvas.height - 200 - 100 }
 ];
+
+// Add player shooting variables
+const playerBullets = [];
+const playerShootDelay = 400; // Time between shots in milliseconds
+let lastPlayerShot = 0;
+
+// Update bullets function
+function updateBullets() {
+    // Update enemy bullets
+    for (let i = bullets.length - 1; i >= 0; i--) {
+        const bullet = bullets[i];
+        bullet.x += enemyBulletSpeed * bullet.direction;
+        
+        // Remove bullets that have traveled too far
+        if (Math.abs(bullet.x - bullet.startX) > bulletMaxDistance) {
+            bullets.splice(i, 1);
+            continue;
+        }
+        
+        // Check bullet collision with player
+        if (player.x + player.width > bullet.x - bullet.radius &&
+            player.x < bullet.x + bullet.radius &&
+            player.y + player.height > bullet.y - bullet.radius &&
+            player.y < bullet.y + bullet.radius) {
+            player.deaths++;
+            if (player.deaths >= 3) {
+                resetGame();
+            } else {
+                resetPlayer();
+            }
+            bullets.splice(i, 1);
+        }
+    }
+    
+    // Update player bullets
+    for (let i = playerBullets.length - 1; i >= 0; i--) {
+        const bullet = playerBullets[i];
+        bullet.x += playerBulletSpeed * bullet.direction;
+        
+        // Remove bullets that have traveled too far
+        if (Math.abs(bullet.x - bullet.startX) > bulletMaxDistance) {
+            playerBullets.splice(i, 1);
+            continue;
+        }
+        
+        // Check for collisions with enemies
+        for (let j = enemies.length - 1; j >= 0; j--) {
+            const enemy = enemies[j];
+            if (bullet.x + bullet.radius > enemy.x &&
+                bullet.x - bullet.radius < enemy.x + enemy.width &&
+                bullet.y + bullet.radius > enemy.y &&
+                bullet.y - bullet.radius < enemy.y + enemy.height) {
+                enemies.splice(j, 1);
+                playerBullets.splice(i, 1);
+                player.score += 100;
+                break;
+            }
+        }
+    }
+}
 
 // Draw bullets
 function drawBullets() {
     ctx.save();
-    ctx.fillStyle = bulletColor;
+    // Draw enemy bullets
     for (const bullet of bullets) {
+        ctx.fillStyle = bulletColor;
+        ctx.beginPath();
+        ctx.arc(bullet.x, bullet.y, bullet.radius, 0, Math.PI * 2);
+        ctx.fill();
+    }
+    // Draw player bullets
+    for (const bullet of playerBullets) {
+        ctx.fillStyle = bullet.color || bulletColor;
         ctx.beginPath();
         ctx.arc(bullet.x, bullet.y, bullet.radius, 0, Math.PI * 2);
         ctx.fill();
@@ -735,53 +858,67 @@ function updateEnemies() {
     const currentTime = Date.now();
     
     for (const enemy of enemies) {
-        // Move enemy horizontally
-        enemy.x += enemy.speed * enemy.direction;
-        
-        // Apply gravity to enemies
-        enemy.y += 0.8; // Same gravity as player
-        
-        // Check collision with platforms
-        let onPlatform = false;
-        for (const platform of platforms) {
-            // Check if enemy is colliding with platform
-            if (enemy.x + enemy.width > platform.x &&
-                enemy.x < platform.x + platform.width &&
-                enemy.y + enemy.height > platform.y &&
-                enemy.y < platform.y + platform.height) {
-                
-                // Calculate overlap on each side
-                const overlapLeft = (enemy.x + enemy.width) - platform.x;
-                const overlapRight = (platform.x + platform.width) - enemy.x;
-                const overlapTop = (enemy.y + enemy.height) - platform.y;
-                const overlapBottom = (platform.y + platform.height) - enemy.y;
-                
-                // Find the smallest overlap
-                const minOverlap = Math.min(overlapLeft, overlapRight, overlapTop, overlapBottom);
-                
-                // Resolve collision based on the smallest overlap
-                if (minOverlap === overlapTop && enemy.y < platform.y) {
-                    // Landing on top of platform
-                    enemy.y = platform.y - enemy.height;
-                    onPlatform = true;
-                } else if (minOverlap === overlapBottom && enemy.y > platform.y) {
-                    // Hitting bottom of platform
-                    enemy.y = platform.y + platform.height;
-                } else if (minOverlap === overlapLeft && enemy.x < platform.x) {
-                    // Hitting right side of platform
-                    enemy.x = platform.x - enemy.width;
-                    enemy.direction *= -1; // Change direction when hitting wall
-                } else if (minOverlap === overlapRight && enemy.x > platform.x) {
-                    // Hitting left side of platform
-                    enemy.x = platform.x + platform.width;
-                    enemy.direction *= -1; // Change direction when hitting wall
+        if (enemy.vertical) {
+            // Vertical movement
+            enemy.y += enemy.speed * enemy.direction;
+            
+            // Change direction at vertical boundaries
+            if (enemy.y <= enemy.startY) {
+                enemy.y = enemy.startY;
+                enemy.direction = 1; // Move down
+            } else if (enemy.y >= enemy.endY) {
+                enemy.y = enemy.endY;
+                enemy.direction = -1; // Move up
+            }
+        } else {
+            // Horizontal movement (existing code)
+            enemy.x += enemy.speed * enemy.direction;
+            
+            // Apply gravity to enemies
+            enemy.y += 0.8; // Same gravity as player
+            
+            // Check collision with platforms
+            let onPlatform = false;
+            for (const platform of platforms) {
+                // Check if enemy is colliding with platform
+                if (enemy.x + enemy.width > platform.x &&
+                    enemy.x < platform.x + platform.width &&
+                    enemy.y + enemy.height > platform.y &&
+                    enemy.y < platform.y + platform.height) {
+                    
+                    // Calculate overlap on each side
+                    const overlapLeft = (enemy.x + enemy.width) - platform.x;
+                    const overlapRight = (platform.x + platform.width) - enemy.x;
+                    const overlapTop = (enemy.y + enemy.height) - platform.y;
+                    const overlapBottom = (platform.y + platform.height) - enemy.y;
+                    
+                    // Find the smallest overlap
+                    const minOverlap = Math.min(overlapLeft, overlapRight, overlapTop, overlapBottom);
+                    
+                    // Resolve collision based on the smallest overlap
+                    if (minOverlap === overlapTop && enemy.y < platform.y) {
+                        // Landing on top of platform
+                        enemy.y = platform.y - enemy.height;
+                        onPlatform = true;
+                    } else if (minOverlap === overlapBottom && enemy.y > platform.y) {
+                        // Hitting bottom of platform
+                        enemy.y = platform.y + platform.height;
+                    } else if (minOverlap === overlapLeft && enemy.x < platform.x) {
+                        // Hitting right side of platform
+                        enemy.x = platform.x - enemy.width;
+                        enemy.direction *= -1; // Change direction when hitting wall
+                    } else if (minOverlap === overlapRight && enemy.x > platform.x) {
+                        // Hitting left side of platform
+                        enemy.x = platform.x + platform.width;
+                        enemy.direction *= -1; // Change direction when hitting wall
+                    }
                 }
             }
-        }
-        
-        // Change direction at patrol boundaries
-        if (enemy.x <= enemy.startX || enemy.x >= enemy.endX) {
-            enemy.direction *= -1;
+            
+            // Change direction at patrol boundaries
+            if (enemy.x <= enemy.startX || enemy.x >= enemy.endX) {
+                enemy.direction *= -1;
+            }
         }
         
         // Shooting logic
@@ -792,7 +929,8 @@ function updateEnemies() {
                 y: enemy.y + enemy.height / 2,
                 direction: enemy.direction,
                 radius: bulletRadius,
-                startX: enemy.x + (enemy.direction > 0 ? enemy.width : 0)  // Store starting position
+                startX: enemy.x + (enemy.direction > 0 ? enemy.width : 0),
+                color: '#ff4500' // Fire color
             });
             enemy.lastShot = currentTime;
         }
@@ -813,32 +951,7 @@ function updateEnemies() {
     }
     
     // Update bullets
-    for (let i = bullets.length - 1; i >= 0; i--) {
-        const bullet = bullets[i];
-        bullet.x += bulletSpeed * bullet.direction;
-        
-        // Remove bullets that have traveled too far
-        const distanceTraveled = Math.abs(bullet.x - bullet.startX);
-        if (distanceTraveled > bulletMaxDistance) {
-            bullets.splice(i, 1);
-            continue;
-        }
-        
-        // Check bullet collision with player
-        if (player.x + player.width > bullet.x - bullet.radius &&
-            player.x < bullet.x + bullet.radius &&
-            player.y + player.height > bullet.y - bullet.radius &&
-            player.y < bullet.y + bullet.radius) {
-            // Player dies when hit by bullet
-            player.deaths++;
-            if (player.deaths >= 3) {
-                resetGame();
-            } else {
-                resetPlayer();
-            }
-            bullets.splice(i, 1);
-        }
-    }
+    updateBullets();
 }
 
 // Draw enemies and bullets
@@ -945,7 +1058,7 @@ function initGame() {
 function gameLoop() {
     update();
     draw();
-    requestAnimationFrame(gameLoop);
+  requestAnimationFrame(gameLoop);
 }
 
 // Start the game
