@@ -692,6 +692,19 @@ function updatePlayer() {
     player.x += player.velocityX;
     player.y += player.velocityY;
 
+    // Prevent player from going beyond boundaries
+    // Frame 0 boundary (start)
+    if (player.x < 50) {
+        player.x = 50;
+        player.velocityX = 0;
+    }
+
+    // Last frame boundary (end)
+    if (player.x > 35000) {  // Adjust this value based on your last frame's position
+        player.x = 35000;
+        player.velocityX = 0;
+    }
+
     // Check for collisions
     checkPlatformCollision();
     
