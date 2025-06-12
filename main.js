@@ -389,9 +389,6 @@ function createCoins() {
     coins.push({ x: 21600, y: canvas.height - 850 - coinSize, width: coinSize, height: coinSize, value: 1 });
     coins.push({ x: 21700, y: canvas.height - 1000 - coinSize, width: coinSize, height: coinSize, value: 1 });
     coins.push({ x: 21800, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
-    coins.push({ x: 21900, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
-    coins.push({ x: 22000, y: canvas.height - 850 - coinSize, width: coinSize, height: coinSize, value: 1 });
-    coins.push({ x: 22100, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
     coins.push({ x: 22200, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
 
     // Frame 17 coins
@@ -401,10 +398,6 @@ function createCoins() {
     coins.push({ x: 23400, y: canvas.height - 750 - coinSize, width: coinSize, height: coinSize, value: 1 });
     coins.push({ x: 23500, y: canvas.height - 800 - coinSize, width: coinSize, height: coinSize, value: 1 });
     coins.push({ x: 23600, y: canvas.height - 850 - coinSize, width: coinSize, height: coinSize, value: 1 });
-    coins.push({ x: 23700, y: canvas.height - 1000 - coinSize, width: coinSize, height: coinSize, value: 1 });
-    coins.push({ x: 23800, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
-    coins.push({ x: 23900, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
-    coins.push({ x: 24000, y: canvas.height - 850 - coinSize, width: coinSize, height: coinSize, value: 1 });
     coins.push({ x: 24100, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
     coins.push({ x: 24200, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
 
@@ -414,11 +407,6 @@ function createCoins() {
     coins.push({ x: 25300, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
     coins.push({ x: 25400, y: canvas.height - 750 - coinSize, width: coinSize, height: coinSize, value: 1 });
     coins.push({ x: 25500, y: canvas.height - 800 - coinSize, width: coinSize, height: coinSize, value: 1 });
-    coins.push({ x: 25600, y: canvas.height - 850 - coinSize, width: coinSize, height: coinSize, value: 1 });
-    coins.push({ x: 25700, y: canvas.height - 1000 - coinSize, width: coinSize, height: coinSize, value: 1 });
-    coins.push({ x: 25800, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
-    coins.push({ x: 25900, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
-    coins.push({ x: 26000, y: canvas.height - 850 - coinSize, width: coinSize, height: coinSize, value: 1 });
     coins.push({ x: 26100, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
     coins.push({ x: 26200, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
 
@@ -429,10 +417,6 @@ function createCoins() {
     coins.push({ x: 27400, y: canvas.height - 750 - coinSize, width: coinSize, height: coinSize, value: 1 });
     coins.push({ x: 27500, y: canvas.height - 800 - coinSize, width: coinSize, height: coinSize, value: 1 });
     coins.push({ x: 27600, y: canvas.height - 850 - coinSize, width: coinSize, height: coinSize, value: 1 });
-    coins.push({ x: 27700, y: canvas.height - 1000 - coinSize, width: coinSize, height: coinSize, value: 1 });
-    coins.push({ x: 27800, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
-    coins.push({ x: 27900, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
-    coins.push({ x: 28000, y: canvas.height - 850 - coinSize, width: coinSize, height: coinSize, value: 1 });
     coins.push({ x: 28100, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
     coins.push({ x: 28200, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
 
@@ -443,9 +427,6 @@ function createCoins() {
     coins.push({ x: 29400, y: canvas.height - 750 - coinSize, width: coinSize, height: coinSize, value: 1 });
     coins.push({ x: 29500, y: canvas.height - 800 - coinSize, width: coinSize, height: coinSize, value: 1 });
     coins.push({ x: 29600, y: canvas.height - 850 - coinSize, width: coinSize, height: coinSize, value: 1 });
-    coins.push({ x: 29700, y: canvas.height - 1000 - coinSize, width: coinSize, height: coinSize, value: 1 });
-    coins.push({ x: 29800, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
-    coins.push({ x: 29900, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
     coins.push({ x: 30000, y: canvas.height - 850 - coinSize, width: coinSize, height: coinSize, value: 1 });
     coins.push({ x: 30100, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
     coins.push({ x: 30200, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
@@ -455,10 +436,6 @@ function createCoins() {
     coins.push({ x: 31200, y: canvas.height - 850 - coinSize, width: coinSize, height: coinSize, value: 1 });
     coins.push({ x: 31300, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
     coins.push({ x: 31400, y: canvas.height - 750 - coinSize, width: coinSize, height: coinSize, value: 1 });
-    coins.push({ x: 31500, y: canvas.height - 800 - coinSize, width: coinSize, height: coinSize, value: 1 });
-    coins.push({ x: 31600, y: canvas.height - 850 - coinSize, width: coinSize, height: coinSize, value: 1 });
-    coins.push({ x: 31700, y: canvas.height - 1000 - coinSize, width: coinSize, height: coinSize, value: 1 });
-    coins.push({ x: 31800, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
     coins.push({ x: 31900, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
     coins.push({ x: 32000, y: canvas.height - 850 - coinSize, width: coinSize, height: coinSize, value: 1 });
     coins.push({ x: 32100, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
@@ -472,9 +449,6 @@ function createCoins() {
     coins.push({ x: 33500, y: canvas.height - 800 - coinSize, width: coinSize, height: coinSize, value: 1 });
     coins.push({ x: 33600, y: canvas.height - 850 - coinSize, width: coinSize, height: coinSize, value: 1 });
     coins.push({ x: 33700, y: canvas.height - 1000 - coinSize, width: coinSize, height: coinSize, value: 1 });
-    coins.push({ x: 33800, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
-    coins.push({ x: 33900, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
-    coins.push({ x: 34000, y: canvas.height - 850 - coinSize, width: coinSize, height: coinSize, value: 1 });
     coins.push({ x: 34100, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
     coins.push({ x: 34200, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
 }
