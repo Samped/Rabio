@@ -168,7 +168,7 @@ const platforms = [
     { x: 21300, y: canvas.height - 350, width: brickWidth * 2, height: brickHeight * 11 }, // Super tall wall
     { x: 21500, y: canvas.height - 500, width: brickWidth * 5, height: brickHeight * 2 },  // Platform
     { x: 21900, y: canvas.height - 300, width: brickWidth * 2, height: brickHeight * 9 },  // Tall wall
-    { x: 22100, y: canvas.height - 400, width: brickWidth * 7, height: brickHeight * 2 },
+
     { x: 22100, y: canvas.height - 50, width: brickWidth * 7, height: brickHeight * 2 },  // Final platform
 
     // Frame 15 platforms
@@ -176,40 +176,73 @@ const platforms = [
     { x: 19500, y: canvas.height - 600, width: 200, height: 20, moving: true, startY: canvas.height - 600, endY: canvas.height - 400, speed: 2, direction: -1 },
     { x: 20000, y: canvas.height - 800, width: 200, height: 20, moving: true, startY: canvas.height - 800, endY: canvas.height - 600, speed: 2, direction: -1 },
 
-    // Frame 16 platforms (Floating)
-    { x: 21000, y: canvas.height - 400, width: 200, height: 20, moving: true, startY: canvas.height - 400, endY: canvas.height - 200, speed: 2, direction: -1 },
-    { x: 21500, y: canvas.height - 600, width: 200, height: 20, moving: true, startY: canvas.height - 600, endY: canvas.height - 400, speed: 2, direction: -1 },
-    { x: 22000, y: canvas.height - 800, width: 200, height: 20, moving: true, startY: canvas.height - 800, endY: canvas.height - 600, speed: 2, direction: -1 },
+    // Frame 16 platforms
+    { x: 21000, y: canvas.height - 400 - 100, width: 200, height: 20, speed: 4, direction: -1, startX: 21000, endX: 22000, platformY: canvas.height - 400 - 100, vertical: false },
+    { x: 21150, y: canvas.height - 300 - 100, width: 200, height: 20 }, // Stable platform
+    { x: 21450, y: canvas.height - 350 - 100, width: 200, height: 20 }, // Stable platform
+    { x: 21600, y: canvas.height - 600 - 100, width: 200, height: 20, speed: 3, direction: 1, startX: 21600, endX: 22600, platformY: canvas.height - 600 - 100, vertical: false },
+    { x: 21750, y: canvas.height - 500 - 100, width: 200, height: 20 }, // Stable platform
+    { x: 22050, y: canvas.height - 450 - 100, width: 200, height: 20 }, // Stable platform
+    { x: 22200, y: canvas.height - 800 - 100, width: 200, height: 20, speed: 5, direction: -1, startX: 22200, endX: 23200, platformY: canvas.height - 800 - 100, vertical: false },
 
-    // Frame 17 platforms (Floating)
-    { x: 23000, y: canvas.height - 400, width: 200, height: 20, moving: true, startY: canvas.height - 400, endY: canvas.height - 200, speed: 2, direction: -1 },
-    { x: 23500, y: canvas.height - 600, width: 200, height: 20, moving: true, startY: canvas.height - 600, endY: canvas.height - 400, speed: 2, direction: -1 },
-    { x: 24000, y: canvas.height - 800, width: 200, height: 20, moving: true, startY: canvas.height - 800, endY: canvas.height - 600, speed: 2, direction: -1 },
+    // Frame 17 platforms
+    { x: 23000, y: canvas.height - 400 - 100, width: 200, height: 20, speed: 3, direction: 1, startX: 23000, endX: 24000, platformY: canvas.height - 400 - 100, vertical: false },
+    { x: 23150, y: canvas.height - 300 - 100, width: 200, height: 20 }, // Stable platform
+    { x: 23450, y: canvas.height - 350 - 100, width: 200, height: 20 }, // Stable platform
+    { x: 23600, y: canvas.height - 600 - 100, width: 200, height: 20, speed: 5, direction: -1, startX: 23600, endX: 24600, platformY: canvas.height - 600 - 100, vertical: false },
+    { x: 23750, y: canvas.height - 500 - 100, width: 200, height: 20 }, // Stable platform
+    { x: 24050, y: canvas.height - 450 - 100, width: 200, height: 20 }, // Stable platform
+    { x: 24200, y: canvas.height - 800 - 100, width: 200, height: 20, speed: 4, direction: 1, startX: 24200, endX: 25200, platformY: canvas.height - 800 - 100, vertical: false },
 
-    // Frame 18 platforms (Floating)
-    { x: 25000, y: canvas.height - 400, width: 200, height: 20, moving: true, startY: canvas.height - 400, endY: canvas.height - 200, speed: 2, direction: -1 },
-    { x: 25500, y: canvas.height - 600, width: 200, height: 20, moving: true, startY: canvas.height - 600, endY: canvas.height - 400, speed: 2, direction: -1 },
-    { x: 26000, y: canvas.height - 800, width: 200, height: 20, moving: true, startY: canvas.height - 800, endY: canvas.height - 600, speed: 2, direction: -1 },
+    // Frame 18 platforms
+    { x: 25000, y: canvas.height - 400 - 100, width: 200, height: 20, speed: 5, direction: -1, startX: 25000, endX: 26000, platformY: canvas.height - 400 - 100, vertical: false },
+    { x: 25150, y: canvas.height - 300 - 100, width: 200, height: 20 }, // Stable platform
+    { x: 25450, y: canvas.height - 350 - 100, width: 200, height: 20 }, // Stable platform
+    { x: 25600, y: canvas.height - 600 - 100, width: 200, height: 20, speed: 3, direction: 1, startX: 25600, endX: 26600, platformY: canvas.height - 600 - 100, vertical: false },
+    { x: 25750, y: canvas.height - 500 - 100, width: 200, height: 20 }, // Stable platform
+    { x: 26050, y: canvas.height - 450 - 100, width: 200, height: 20 }, // Stable platform
+    { x: 26200, y: canvas.height - 800 - 100, width: 200, height: 20, speed: 4, direction: -1, startX: 26200, endX: 27200, platformY: canvas.height - 800 - 100, vertical: false },
 
-    // Frame 19 platforms (Floating)
-    { x: 27000, y: canvas.height - 400, width: 200, height: 20, moving: true, startY: canvas.height - 400, endY: canvas.height - 200, speed: 2, direction: -1 },
-    { x: 27500, y: canvas.height - 600, width: 200, height: 20, moving: true, startY: canvas.height - 600, endY: canvas.height - 400, speed: 2, direction: -1 },
-    { x: 28000, y: canvas.height - 800, width: 200, height: 20, moving: true, startY: canvas.height - 800, endY: canvas.height - 600, speed: 2, direction: -1 },
+    // Frame 19 platforms
+    { x: 27000, y: canvas.height - 400 - 100, width: 200, height: 20, speed: 4, direction: 1, startX: 27000, endX: 28000, platformY: canvas.height - 400 - 100, vertical: false },
+    { x: 27150, y: canvas.height - 300 - 100, width: 200, height: 20 }, // Stable platform
+    { x: 27450, y: canvas.height - 350 - 100, width: 200, height: 20 }, // Stable platform
+    { x: 27600, y: canvas.height - 600 - 100, width: 200, height: 20, speed: 5, direction: -1, startX: 27600, endX: 28600, platformY: canvas.height - 600 - 100, vertical: false },
+    { x: 27750, y: canvas.height - 500 - 100, width: 200, height: 20 }, // Stable platform
+    { x: 27900, y: canvas.height - 400 - 100, width: 200, height: 20 }, // Stable platform
+    { x: 28050, y: canvas.height - 450 - 100, width: 200, height: 20 }, // Stable platform
+    { x: 28200, y: canvas.height - 800 - 100, width: 200, height: 20, speed: 3, direction: 1, startX: 28200, endX: 29200, platformY: canvas.height - 800 - 100, vertical: false },
 
-    // Frame 20 platforms (Floating)
-    { x: 29000, y: canvas.height - 400, width: 200, height: 20, moving: true, startY: canvas.height - 400, endY: canvas.height - 200, speed: 2, direction: -1 },
-    { x: 29500, y: canvas.height - 600, width: 200, height: 20, moving: true, startY: canvas.height - 600, endY: canvas.height - 400, speed: 2, direction: -1 },
-    { x: 30000, y: canvas.height - 800, width: 200, height: 20, moving: true, startY: canvas.height - 800, endY: canvas.height - 600, speed: 2, direction: -1 },
+    // Frame 20 platforms
+    { x: 29000, y: canvas.height - 400 - 100, width: 200, height: 20, speed: 5, direction: -1, startX: 29000, endX: 30000, platformY: canvas.height - 400 - 100, vertical: false },
+    { x: 29150, y: canvas.height - 300 - 100, width: 200, height: 20 }, // Stable platformm
+    { x: 29450, y: canvas.height - 350 - 100, width: 200, height: 20 }, // Stable platform
+    { x: 29600, y: canvas.height - 600 - 100, width: 200, height: 20, speed: 4, direction: 1, startX: 29600, endX: 30600, platformY: canvas.height - 600 - 100, vertical: false },
+    { x: 29750, y: canvas.height - 500 - 100, width: 200, height: 20 }, // Stable platform
+    { x: 29900, y: canvas.height - 400 - 100, width: 200, height: 20 }, // Stable platform
+    { x: 30050, y: canvas.height - 450 - 100, width: 200, height: 20 }, // Stable platform
+    { x: 30200, y: canvas.height - 800 - 100, width: 200, height: 20, speed: 3, direction: -1, startX: 30200, endX: 31200, platformY: canvas.height - 800 - 100, vertical: false },
 
-    // Frame 21 platforms (Floating)
-    { x: 31000, y: canvas.height - 400, width: 200, height: 20, moving: true, startY: canvas.height - 400, endY: canvas.height - 200, speed: 2, direction: -1 },
-    { x: 31500, y: canvas.height - 600, width: 200, height: 20, moving: true, startY: canvas.height - 600, endY: canvas.height - 400, speed: 2, direction: -1 },
-    { x: 32000, y: canvas.height - 800, width: 200, height: 20, moving: true, startY: canvas.height - 800, endY: canvas.height - 600, speed: 2, direction: -1 },
+    // Frame 21 platforms
+    { x: 31000, y: canvas.height - 400 - 100, width: 200, height: 20, speed: 3, direction: 1, startX: 31000, endX: 32000, platformY: canvas.height - 400 - 100, vertical: false },
+    { x: 31150, y: canvas.height - 300 - 100, width: 200, height: 20 }, // Stable platform
+    { x: 31450, y: canvas.height - 350 - 100, width: 200, height: 20 }, // Stable platform
+    { x: 31600, y: canvas.height - 600 - 100, width: 200, height: 20, speed: 5, direction: -1, startX: 31600, endX: 32600, platformY: canvas.height - 600 - 100, vertical: false },
+    { x: 31750, y: canvas.height - 500 - 100, width: 200, height: 20 }, // Stable platform
+    { x: 31900, y: canvas.height - 400 - 100, width: 200, height: 20 }, // Stable platform
+    { x: 32050, y: canvas.height - 450 - 100, width: 200, height: 20 }, // Stable platform
+    { x: 32200, y: canvas.height - 800 - 100, width: 200, height: 20, speed: 4, direction: 1, startX: 32200, endX: 33200, platformY: canvas.height - 800 - 100, vertical: false },
 
-    // Frame 22 platforms (Floating)
-    { x: 33000, y: canvas.height - 400, width: 200, height: 20, moving: true, startY: canvas.height - 400, endY: canvas.height - 200, speed: 2, direction: -1 },
-    { x: 33500, y: canvas.height - 600, width: 200, height: 20, moving: true, startY: canvas.height - 600, endY: canvas.height - 400, speed: 2, direction: -1 },
-    { x: 34000, y: canvas.height - 800, width: 200, height: 20, moving: true, startY: canvas.height - 800, endY: canvas.height - 600, speed: 2, direction: -1 }
+    // Frame 22 platforms
+    { x: 33000, y: canvas.height - 400 - 100, width: 200, height: 20, speed: 4, direction: -1, startX: 33000, endX: 34000, platformY: canvas.height - 400 - 100, vertical: false },
+    { x: 33150, y: canvas.height - 300 - 100, width: 200, height: 20 }, // Stable platform
+    { x: 33300, y: canvas.height - 200 - 100, width: 200, height: 20 }, // Stable platform
+    { x: 33450, y: canvas.height - 350 - 100, width: 200, height: 20 }, // Stable platform
+    { x: 33600, y: canvas.height - 600 - 100, width: 200, height: 20, speed: 3, direction: 1, startX: 33600, endX: 34600, platformY: canvas.height - 600 - 100, vertical: false },
+    { x: 33750, y: canvas.height - 500 - 100, width: 200, height: 20 }, // Stable platform
+    { x: 33900, y: canvas.height - 400 - 100, width: 200, height: 20 }, // Stable platform
+    { x: 34050, y: canvas.height - 450 - 100, width: 200, height: 20 }, // Stable platform
+    { x: 34200, y: canvas.height - 800 - 100, width: 200, height: 20, speed: 5, direction: -1, startX: 34200, endX: 35200, platformY: canvas.height - 800 - 100, vertical: false }
 ];
 
 // Coin properties
@@ -346,6 +379,104 @@ function createCoins() {
     coins.push({ x: 21600, y: canvas.height - 600 - coinSize, width: coinSize, height: coinSize, collected: false });
     coins.push({ x: 21800, y: canvas.height - 750 - coinSize, width: coinSize, height: coinSize, collected: false });
     coins.push({ x: 22000, y: canvas.height - 500 - coinSize, width: coinSize, height: coinSize, collected: false });
+
+    // Frame 16 coins
+    coins.push({ x: 21100, y: canvas.height - 800 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 21200, y: canvas.height - 850 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 21300, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 21400, y: canvas.height - 750 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 21500, y: canvas.height - 800 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 21600, y: canvas.height - 850 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 21700, y: canvas.height - 1000 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 21800, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 21900, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 22000, y: canvas.height - 850 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 22100, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 22200, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
+
+    // Frame 17 coins
+    coins.push({ x: 23100, y: canvas.height - 800 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 23200, y: canvas.height - 850 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 23300, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 23400, y: canvas.height - 750 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 23500, y: canvas.height - 800 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 23600, y: canvas.height - 850 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 23700, y: canvas.height - 1000 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 23800, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 23900, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 24000, y: canvas.height - 850 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 24100, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 24200, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
+
+    // Frame 18 coins
+    coins.push({ x: 25100, y: canvas.height - 800 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 25200, y: canvas.height - 850 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 25300, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 25400, y: canvas.height - 750 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 25500, y: canvas.height - 800 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 25600, y: canvas.height - 850 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 25700, y: canvas.height - 1000 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 25800, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 25900, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 26000, y: canvas.height - 850 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 26100, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 26200, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
+
+    // Frame 19 coins
+    coins.push({ x: 27100, y: canvas.height - 800 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 27200, y: canvas.height - 850 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 27300, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 27400, y: canvas.height - 750 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 27500, y: canvas.height - 800 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 27600, y: canvas.height - 850 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 27700, y: canvas.height - 1000 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 27800, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 27900, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 28000, y: canvas.height - 850 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 28100, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 28200, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
+
+    // Frame 20 coins
+    coins.push({ x: 29100, y: canvas.height - 800 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 29200, y: canvas.height - 850 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 29300, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 29400, y: canvas.height - 750 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 29500, y: canvas.height - 800 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 29600, y: canvas.height - 850 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 29700, y: canvas.height - 1000 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 29800, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 29900, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 30000, y: canvas.height - 850 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 30100, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 30200, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
+
+    // Frame 21 coins
+    coins.push({ x: 31100, y: canvas.height - 800 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 31200, y: canvas.height - 850 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 31300, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 31400, y: canvas.height - 750 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 31500, y: canvas.height - 800 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 31600, y: canvas.height - 850 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 31700, y: canvas.height - 1000 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 31800, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 31900, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 32000, y: canvas.height - 850 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 32100, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 32200, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
+
+    // Frame 22 coins
+    coins.push({ x: 33100, y: canvas.height - 800 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 33200, y: canvas.height - 850 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 33300, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 33400, y: canvas.height - 750 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 33500, y: canvas.height - 800 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 33600, y: canvas.height - 850 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 33700, y: canvas.height - 1000 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 33800, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 33900, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 34000, y: canvas.height - 850 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 34100, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 34200, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
 }
 
 // Player properties
@@ -768,9 +899,9 @@ const enemies = [
     { x: 16600, y: canvas.height - 800 - 1000, width: 100, height: 100, speed: 2, direction: -1, startX: 7600, endX: 7600, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'gun', vertical: true, startY: canvas.height - 400 - 100, endY: canvas.height - 200 - 100 },
     { x: 7800, y: canvas.height - 400 - 100, width: 100, height: 100, speed: 2, direction: -1, startX: 7800, endX: 7800, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'inco', vertical: true, startY: canvas.height - 400 - 100, endY: canvas.height - 200 - 100 },
     { x: 18000, y: canvas.height - 600 - 1000, width: 100, height: 100, speed: 2, direction: -1, startX: 8000, endX: 8000, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'gun', vertical: true, startY: canvas.height - 400 - 100, endY: canvas.height - 200 - 100 },
-        { x: 19000, y: canvas.height - 600 - 1000, width: 100, height: 100, speed: 2, direction: -1, startX: 9000, endX: 8000, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'inco', vertical: true, startY: canvas.height - 400 - 100, endY: canvas.height - 200 - 100 },
-            { x: 19500, y: canvas.height - 600 - 1000, width: 100, height: 100, speed: 2, direction: -1, startX: 10000, endX: 8000, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'gun', vertical: true, startY: canvas.height - 400 - 100, endY: canvas.height - 200 - 100 },
-                { x: 20000, y: canvas.height - 600 - 1000, width: 100, height: 100, speed: 2, direction: -1, startX: 8000, endX: 8000, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'inco', vertical: true, startY: canvas.height - 400 - 100, endY: canvas.height - 200 - 100 }
+    { x: 19000, y: canvas.height - 600 - 1000, width: 100, height: 100, speed: 2, direction: -1, startX: 9000, endX: 8000, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'inco', vertical: true, startY: canvas.height - 400 - 100, endY: canvas.height - 200 - 100 },
+    { x: 19500, y: canvas.height - 600 - 1000, width: 100, height: 100, speed: 2, direction: -1, startX: 10000, endX: 8000, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'gun', vertical: true, startY: canvas.height - 400 - 100, endY: canvas.height - 200 - 100 },
+    { x: 20000, y: canvas.height - 600 - 1000, width: 100, height: 100, speed: 2, direction: -1, startX: 8000, endX: 8000, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'inco', vertical: true, startY: canvas.height - 400 - 100, endY: canvas.height - 200 - 100 }
 ];
 
 // Add player shooting variables
@@ -986,6 +1117,23 @@ function update() {
     
     // Update camera
     updateCamera();
+    
+    // Update platforms
+    for (const platform of platforms) {
+        if (platform.startX !== undefined && platform.endX !== undefined) {
+            // Horizontal movement
+            platform.x += platform.speed * platform.direction;
+            
+            // Change direction at boundaries
+            if (platform.x <= platform.startX) {
+                platform.x = platform.startX;
+                platform.direction = 1;
+            } else if (platform.x >= platform.endX) {
+                platform.x = platform.endX;
+                platform.direction = -1;
+            }
+        }
+    }
     
     // Update enemies
     updateEnemies();
