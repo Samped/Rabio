@@ -22,9 +22,12 @@ incoEnemyImage.src = 'assets/enemies/inco-enemy.png';
 const backgroundImage = new Image();
 backgroundImage.src = 'assets/background.png';
 
+const incomascot = new Image();
+incomascot.src = 'assets/gain/incomascot.png';
+
 // Wait for images to load
 let imagesLoaded = 0;
-const totalImages = 5;  // Updated to include both enemy images
+const totalImages = 6;  // Updated to include both enemy images
 
 function imageLoaded() {
     imagesLoaded++;
@@ -39,6 +42,7 @@ coinImage.onload = imageLoaded;
 gunEnemyImage.onload = imageLoaded;
 incoEnemyImage.onload = imageLoaded;
 backgroundImage.onload = imageLoaded;
+incomascot.onload = imageLoaded;
 
 // Load character image
 const rabio = new Image();
@@ -454,9 +458,14 @@ function createCoins() {
     coins.push({ x: 34100, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
     coins.push({ x: 34200, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
     coins.push({ x: 34400, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
-    coins.push({ x: 34600, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });    coins.push({ x: 34100, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
-    coins.push({ x: 34700, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });    coins.push({ x: 34100, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 34600, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });    
+    coins.push({ x: 34700, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });   
     coins.push({ x: 34800, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 35000, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 34800, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 34800, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 35000, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 34800, y: canvas.height - 700 - coinSize, width: 60, height: 60, value: 1, isSpecial: true });
 }
 
 // Player properties
@@ -639,31 +648,23 @@ function checkCoinCollection() {
 function drawCoins() {
     for (const coin of coins) {
         if (!coin.collected) {
-            // Save the current context state
-            ctx.save();
-            
-            // Move to coin's center
-            ctx.translate(coin.x + coin.width/2, coin.y + coin.height/2);
-            
-            // Flip the coin (rotate around X axis)
-            ctx.rotate(coinFlip);
-            
-            // Scale to create flip effect
-            const scale = Math.abs(Math.cos(coinFlip));
-            ctx.scale(1, scale);
-            
-            // Draw the coin image centered
-            ctx.drawImage(coinImage, -coin.width/2, -coin.height/2, coin.width, coin.height);
-            
-            // Restore the context state
-            ctx.restore();
+            if (coin.isSpecial && incomascot.complete) {
+                ctx.drawImage(incomascot, coin.x, coin.y, coin.width * 3, coin.height * 3);
+            } else {
+                // Regular coin drawing code
+                ctx.save();
+                ctx.translate(coin.x + coin.width/2, coin.y + coin.height/2);
+                ctx.rotate(coinFlip);
+                const scale = Math.abs(Math.cos(coinFlip));
+                ctx.scale(1, scale);
+                ctx.drawImage(coinImage, -coin.width/2, -coin.height/2, coin.width, coin.height);
+                ctx.restore();
+            }
         }
     }
-    
-    // Update flip angle
-    coinFlip += 0.1;  // Adjust speed of flip
+    coinFlip += 0.1;
     if (coinFlip >= Math.PI * 2) {
-        coinFlip = 0;  // Reset flip when it completes a full cycle
+        coinFlip = 0;
     }
 }
 
