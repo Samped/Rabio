@@ -465,7 +465,7 @@ function createCoins() {
     coins.push({ x: 34800, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
     coins.push({ x: 34800, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
     coins.push({ x: 35000, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
-    coins.push({ x: 34800, y: canvas.height - 700 - coinSize, width: 60, height: 60, value: 1, isSpecial: true });
+    coins.push({ x: 34800, y: canvas.height - 650 - coinSize, width: 60, height: 60, value: 1, isSpecial: true });
 }
 
 // Player properties
@@ -639,7 +639,11 @@ function checkCoinCollection() {
             player.y + player.height > coin.y &&
             player.y < coin.y + coin.height) {
             coin.collected = true;
-            player.score += 2;  // Changed from 50 to 2 points per coin
+            if (coin.isSpecial) {
+                player.score += 150;  // Add 150 points for special coin
+            } else {
+                player.score += 2;  // Regular coins give 2 points
+            }
         }
     }
 }
