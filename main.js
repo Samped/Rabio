@@ -1322,6 +1322,7 @@ function initGame() {
     createCoins();  // Create coins
     resetPlayer();
     createPopupScreen();  // Show popup screen
+    createMobileControls(); // Add mobile controls
 }
 
 // Game loop
@@ -1469,3 +1470,123 @@ function createPopupScreen() {
     overlay.appendChild(popup);
     document.body.appendChild(overlay);
 }
+
+// Add mobile controls
+function createMobileControls() {
+    const controls = document.createElement('div');
+    controls.style.position = 'fixed';
+    controls.style.bottom = '20px';
+    controls.style.left = '50%';
+    controls.style.transform = 'translateX(-50%)';
+    controls.style.display = 'flex';
+    controls.style.gap = '20px';
+    controls.style.zIndex = '1000';
+
+    // Movement controls
+    const movementControls = document.createElement('div');
+    movementControls.style.display = 'flex';
+    movementControls.style.gap = '10px';
+
+    // Left button
+    const leftBtn = document.createElement('button');
+    leftBtn.innerHTML = '⬅️';
+    leftBtn.style.width = '60px';
+    leftBtn.style.height = '60px';
+    leftBtn.style.fontSize = '24px';
+    leftBtn.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    leftBtn.style.border = '2px solid #0000ff';
+    leftBtn.style.borderRadius = '50%';
+    leftBtn.style.color = 'white';
+    leftBtn.style.cursor = 'pointer';
+    leftBtn.style.touchAction = 'manipulation';
+
+    // Right button
+    const rightBtn = document.createElement('button');
+    rightBtn.innerHTML = '➡️';
+    rightBtn.style.width = '60px';
+    rightBtn.style.height = '60px';
+    rightBtn.style.fontSize = '24px';
+    rightBtn.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    rightBtn.style.border = '2px solid #0000ff';
+    rightBtn.style.borderRadius = '50%';
+    rightBtn.style.color = 'white';
+    rightBtn.style.cursor = 'pointer';
+    rightBtn.style.touchAction = 'manipulation';
+
+    // Action controls
+    const actionControls = document.createElement('div');
+    actionControls.style.display = 'flex';
+    actionControls.style.gap = '10px';
+
+    // Jump button
+    const jumpBtn = document.createElement('button');
+    jumpBtn.innerHTML = '⬆️';
+    jumpBtn.style.width = '60px';
+    jumpBtn.style.height = '60px';
+    jumpBtn.style.fontSize = '24px';
+    jumpBtn.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    jumpBtn.style.border = '2px solid #0000ff';
+    jumpBtn.style.borderRadius = '50%';
+    jumpBtn.style.color = 'white';
+    jumpBtn.style.cursor = 'pointer';
+    jumpBtn.style.touchAction = 'manipulation';
+
+    // Shoot button
+    const shootBtn = document.createElement('button');
+    shootBtn.innerHTML = '🎯';
+    shootBtn.style.width = '60px';
+    shootBtn.style.height = '60px';
+    shootBtn.style.fontSize = '24px';
+    shootBtn.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    shootBtn.style.border = '2px solid #0000ff';
+    shootBtn.style.borderRadius = '50%';
+    shootBtn.style.color = 'white';
+    shootBtn.style.cursor = 'pointer';
+    shootBtn.style.touchAction = 'manipulation';
+
+    // Add touch event listeners
+    leftBtn.addEventListener('touchstart', () => keys.ArrowLeft = true);
+    leftBtn.addEventListener('touchend', () => keys.ArrowLeft = false);
+    rightBtn.addEventListener('touchstart', () => keys.ArrowRight = true);
+    rightBtn.addEventListener('touchend', () => keys.ArrowRight = false);
+    jumpBtn.addEventListener('touchstart', () => {
+        if (player.jumpCount < 2) {
+            player.velocityY = player.jumpForce;
+            player.jumpCount++;
+            playSound('jump');
+        }
+    });
+    shootBtn.addEventListener('touchstart', () => {
+        if (Date.now() - lastPlayerShot > playerShootDelay) {
+            playerBullets.push({
+                x: player.x + (player.facingRight ? player.width : 0),
+                y: player.y + player.height / 2,
+                direction: player.facingRight ? 1 : -1,
+                radius: bulletRadius,
+                startX: player.x + (player.facingRight ? player.width : 0),
+                color: '#0000ff'
+            });
+            lastPlayerShot = Date.now();
+            playSound('shoot');
+        }
+    });
+
+    // Add buttons to controls
+    movementControls.appendChild(leftBtn);
+    movementControls.appendChild(rightBtn);
+    actionControls.appendChild(jumpBtn);
+    actionControls.appendChild(shootBtn);
+    controls.appendChild(movementControls);
+    controls.appendChild(actionControls);
+
+    // Only show controls on mobile devices
+    if ('ontouchstart' in window) {
+        document.body.appendChild(controls);
+    }
+}
+
+// Add viewport meta tag for mobile devices
+const meta = document.createElement('meta');
+meta.name = 'viewport';
+meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+document.head.appendChild(meta);
