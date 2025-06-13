@@ -1321,13 +1321,14 @@ function draw() {
 function initGame() {
     createCoins();  // Create coins
     resetPlayer();
+    createPopupScreen();  // Show popup screen
 }
 
 // Game loop
 function gameLoop() {
     update();
     draw();
-  requestAnimationFrame(gameLoop);
+    requestAnimationFrame(gameLoop);
 }
 
 // Start the game
@@ -1359,4 +1360,112 @@ function drawWinScreen() {
     ctx.fillText('Press R to Restart', canvas.width/2, canvas.height/2 + 120);
     
     ctx.restore();
+}
+
+// Add game state
+let gameStarted = false;
+
+// Create popup screen
+function createPopupScreen() {
+    // Create overlay
+    const overlay = document.createElement('div');
+    overlay.style.position = 'fixed';
+    overlay.style.top = '0';
+    overlay.style.left = '0';
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+    overlay.style.zIndex = '1000';
+    overlay.style.display = 'flex';
+    overlay.style.justifyContent = 'center';
+    overlay.style.alignItems = 'center';
+    overlay.style.padding = '20px';
+
+    // Create popup container
+    const popup = document.createElement('div');
+    popup.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+    popup.style.padding = 'clamp(20px, 5vw, 30px)';
+    popup.style.borderRadius = '15px';
+    popup.style.color = 'white';
+    popup.style.textAlign = 'center';
+    popup.style.width = 'min(90%, 600px)';
+    popup.style.maxHeight = '90vh';
+    popup.style.overflowY = 'auto';
+    popup.style.fontFamily = '"Comic Sans MS", cursive';
+    popup.style.border = '3px solid #0000ff';
+    popup.style.boxSizing = 'border-box';
+
+    // Game title
+    const title = document.createElement('h1');
+    title.textContent = 'Rabio Adventure';
+    title.style.color = '#0000ff';
+    title.style.marginBottom = 'clamp(15px, 3vw, 20px)';
+    title.style.fontSize = 'clamp(1.8em, 5vw, 2.5em)';
+    title.style.textShadow = '#0000ff';
+    popup.appendChild(title);
+
+    // Story
+    const story = document.createElement('p');
+    story.innerHTML = `
+    Welcome to the world of Inco Believers!<br><br>
+    Rabio is an Inco Believer on a mission to save the Inco Cloud Bunny. Every adventure comes with a cost  she must defeat enemies along the way and fill her bag with coins.<br><br>
+    Your goal is to rescue the Cloudy Bunny and complete your quest!
+
+    `;
+    story.style.marginBottom = 'clamp(15px, 3vw, 20px)';
+    story.style.lineHeight = '1.6';
+    story.style.fontSize = 'clamp(1em, 3vw, 1.2em)';
+    popup.appendChild(story);
+
+    // Instructions
+    const instructions = document.createElement('div');
+    instructions.innerHTML = `
+        <h2 style="color: #0000ff; margin-bottom: 10px; font-size: clamp(1.2em, 4vw, 1.5em);">How to Play:</h2>
+        <ul style="text-align: left; list-style-type: none; padding: 0;">
+            <li style="margin: clamp(8px, 2vw, 10px) 0; font-size: clamp(0.9em, 2.5vw, 1.1em);"> Arrow Keys: Move left and right</li>
+            <li style="margin: clamp(8px, 2vw, 10px) 0; font-size: clamp(0.9em, 2.5vw, 1.1em);">space Key: Jump</li>
+            <li style="margin: clamp(8px, 2vw, 10px) 0; font-size: clamp(0.9em, 2.5vw, 1.1em);">Space: Double Jump</li>
+            <li style="margin: clamp(8px, 2vw, 10px) 0; font-size: clamp(0.9em, 2.5vw, 1.1em);">Enter: Shoot</li>
+            <li style="margin: clamp(8px, 2vw, 10px) 0; font-size: clamp(0.9em, 2.5vw, 1.1em);">R: Restart after winning</li>
+        </ul>
+    `;
+    instructions.style.marginBottom = 'clamp(15px, 3vw, 20px)';
+    popup.appendChild(instructions);
+
+    // Start button
+    const startButton = document.createElement('button');
+    startButton.textContent = 'Start Adventure!';
+    startButton.style.padding = 'clamp(10px, 3vw, 15px) clamp(20px, 5vw, 30px)';
+    startButton.style.fontSize = 'clamp(1.2em, 4vw, 1.5em)';
+    startButton.style.backgroundColor = '#0000ff';
+    startButton.style.color = 'white';
+    startButton.style.border = 'none';
+    startButton.style.borderRadius = '5px';
+    startButton.style.cursor = 'pointer';
+    startButton.style.fontFamily = '"Comic Sans MS", cursive';
+    startButton.style.transition = 'all 0.3s ease';
+    startButton.style.boxShadow = '0 4px 8px #0000ff';
+    startButton.style.width = 'min(100%, 300px)';
+    startButton.style.margin = '0 auto';
+
+    // Button hover effect
+    startButton.onmouseover = () => {
+        startButton.style.transform = 'scale(1.1)';
+        startButton.style.boxShadow = '0 6px 12px #0000ff';
+    };
+    startButton.onmouseout = () => {
+        startButton.style.transform = 'scale(1)';
+        startButton.style.boxShadow = '0 4px 8px #0000ff';
+    };
+
+    // Start game when button is clicked
+    startButton.onclick = () => {
+        overlay.remove();
+        gameStarted = true;
+        playBackgroundMusic();
+    };
+
+    popup.appendChild(startButton);
+    overlay.appendChild(popup);
+    document.body.appendChild(overlay);
 }
