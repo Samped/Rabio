@@ -25,6 +25,71 @@ backgroundImage.src = 'assets/background.png';
 const incomascot = new Image();
 incomascot.src = 'assets/gain/incomascot.png';
 
+// Load sound effects
+const sounds = {
+    jump: new Audio('assets/sounds/jump.mp3'),
+    coin: new Audio('assets/sounds/coin.mp3'),
+    shoot: new Audio('assets/sounds/shoot.mp3'),
+    enemyHit: new Audio('assets/sounds/enemy-hit.mp3'),
+    playerHit: new Audio('assets/sounds/player-hit.mp3'),
+    gameOver: new Audio('assets/sounds/game-over.mp3'),
+    win: new Audio('assets/sounds/win.mp3'),
+    background: new Audio('assets/sounds/background-sound.mp3')
+};
+
+// Set background music to loop
+sounds.background.loop = true;
+sounds.background.volume = 0.5; // Set volume to 50%
+
+// Function to play background music
+function playBackgroundMusic() {
+    // Reset the audio to the beginning
+    sounds.background.currentTime = 0;
+    
+    // Play the background music
+    const playPromise = sounds.background.play();
+    
+    if (playPromise !== undefined) {
+        playPromise.then(_ => {
+            // Autoplay started successfully
+            console.log('Background music started playing');
+        }).catch(error => {
+            // Autoplay was prevented
+            console.log('Error playing background music:', error);
+            // Try to play on user interaction
+            document.addEventListener('click', () => {
+                sounds.background.play();
+            }, { once: true });
+        });
+    }
+}
+
+// Start background music when game starts
+window.addEventListener('load', () => {
+    playBackgroundMusic();
+});
+
+// Set volume for all sounds
+Object.values(sounds).forEach(sound => {
+    sound.volume = 0.3; // Set volume to 30%
+});
+
+// Function to play sound with error handling
+function playSound(soundName) {
+    try {
+        const sound = sounds[soundName];
+        if (sound) {
+            // Reset the sound to the beginning if it's already playing
+            sound.currentTime = 0;
+            sound.play().catch(error => {
+                console.log('Error playing sound:', error);
+            });
+        }
+    } catch (error) {
+        console.log('Error with sound:', error);
+    }
+}
+
 // Wait for images to load
 let imagesLoaded = 0;
 const totalImages = 6;  // Updated to include both enemy images
@@ -512,11 +577,13 @@ window.addEventListener('keydown', (e) => {
             // Double jump
             player.velocityY = player.jumpForce;
             player.jumpCount = 2;
+            playSound('jump');
         } else if (player.jumpCount === 0) {
             // First jump
             player.velocityY = player.jumpForce;
             player.isJumping = true;
             player.jumpCount = 1;
+            playSound('jump');
         }
         player.lastSpacePress = currentTime;
     }
@@ -528,6 +595,7 @@ window.addEventListener('keydown', (e) => {
     // Add restart functionality
     if (e.code === 'KeyR' && player.gameWon) {
         resetGame();
+        playSound('coin');
     }
 });
 
@@ -683,8 +751,10 @@ function checkCoinCollection() {
             if (coin.isSpecial) {
                 player.score += 150;  // Add 150 points for special coin
                 player.gameWon = true;  // Set game won state
+                playSound('win');
             } else {
                 player.score += 2;  // Regular coins give 2 points
+                playSound('coin');
             }
         }
     }
@@ -784,9 +854,10 @@ function updatePlayer() {
             direction: player.facingRight ? 1 : -1,
             radius: bulletRadius,
             startX: player.x + (player.facingRight ? player.width : 0),
-            color: '#0000ff' // Changed from '#ff4500' to blue
+            color: '#0000ff'
         });
         lastPlayerShot = Date.now();
+        playSound('shoot');
     }
 }
 
@@ -970,8 +1041,10 @@ function updateBullets() {
             player.deaths++;
             if (player.deaths >= 3) {
                 resetGame();
+                playSound('gameOver');
             } else {
                 resetPlayer();
+                playSound('playerHit');
             }
             bullets.splice(i, 1);
         }
@@ -998,6 +1071,7 @@ function updateBullets() {
                 enemies.splice(j, 1);
                 playerBullets.splice(i, 1);
                 player.score += 5;
+                playSound('enemyHit');
                 break;
             }
         }
@@ -1115,8 +1189,10 @@ function updateEnemies() {
             player.deaths++;
             if (player.deaths >= 3) {
                 resetGame();
+                playSound('gameOver');
             } else {
                 resetPlayer();
+                playSound('playerHit');
             }
         }
     }
