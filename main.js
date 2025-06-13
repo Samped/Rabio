@@ -453,6 +453,10 @@ function createCoins() {
     coins.push({ x: 33700, y: canvas.height - 1000 - coinSize, width: coinSize, height: coinSize, value: 1 });
     coins.push({ x: 34100, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
     coins.push({ x: 34200, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 34400, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 34600, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });    coins.push({ x: 34100, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 34700, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });    coins.push({ x: 34100, y: canvas.height - 900 - coinSize, width: coinSize, height: coinSize, value: 1 });
+    coins.push({ x: 34800, y: canvas.height - 950 - coinSize, width: coinSize, height: coinSize, value: 1 });
 }
 
 // Player properties
