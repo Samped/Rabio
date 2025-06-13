@@ -242,8 +242,10 @@ const platforms = [
     { x: 33750, y: canvas.height - 500 - 100, width: 200, height: 20 }, // Stable platform
     { x: 33900, y: canvas.height - 400 - 100, width: 200, height: 20 }, // Stable platform
     { x: 34050, y: canvas.height - 450 - 100, width: 200, height: 20 }, // Stable platform
-    { x: 34200, y: canvas.height - 800 - 100, width: 200, height: 20, speed: 5, direction: -1, startX: 34200, endX: 35200, platformY: canvas.height - 800 - 100, vertical: false }
+    { x: 34200, y: canvas.height - 800 - 100, width: 200, height: 20, speed: 5, direction: -1, startX: 34200, endX: 34800, platformY: canvas.height - 800 - 100, vertical: false },
+    { x: 34800, y: canvas.height - 500, width: brickWidth * 5, height: brickHeight * 18 }, // Tall wall
 ];
+
 
 // Coin properties
 const coins = [];
@@ -578,7 +580,7 @@ const camera = {
 function updateCamera() {
     // Center camera on player with some offset
     const targetX = player.x - canvas.width * 0.3;
-    camera.x = Math.max(0, targetX);
+    camera.x = Math.max(0, Math.min(targetX, 35200 - canvas.width));
 }
 
 // Check if player is dead
