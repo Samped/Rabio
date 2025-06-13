@@ -488,7 +488,8 @@ const player = {
     isDead: false,
     score: 0,
     lives: 3,  // Number of lives
-    deaths: 0  // Track number of deaths
+    deaths: 0,  // Track number of deaths
+    gameWon: false  // Add game won state
 };
 
 // Input handling
@@ -522,6 +523,11 @@ window.addEventListener('keydown', (e) => {
     
     if (e.code in keys) {
         keys[e.code] = true;
+    }
+    
+    // Add restart functionality
+    if (e.code === 'KeyR' && player.gameWon) {
+        resetGame();
     }
 });
 
@@ -624,10 +630,45 @@ function resetGame() {
     resetPlayer();
     player.deaths = 0;
     player.score = 0;
+    player.gameWon = false;  // Reset win state
+    
     // Reset all coins
     for (const coin of coins) {
         coin.collected = false;
     }
+    
+    // Reset enemies
+    enemies.length = 0;  // Clear existing enemies
+    enemies.push(
+        // First section enemies (Easy)
+        { x: 800, y: canvas.height - 600 - 100, width: 100, height: 100, speed: 2, direction: 1, startX: 800, endX: 1000, platformY: canvas.height - 600 - 100, lastShot: 0, shootDelay: 2000, type: 'inco' },
+        { x: 7200, y: canvas.height - 200 - 100, width: 100, height: 100, speed: 2, direction: 1, startX: 1200, endX: 1400, platformY: canvas.height - 200 - 100, lastShot: 0, shootDelay: 2000, type: 'gun' },
+        { x: 8600, y: canvas.height - 450 - 100, width: 100, height: 100, speed: 2, direction: 1, startX: 1600, endX: 1800, platformY: canvas.height - 450 - 100, lastShot: 0, shootDelay: 2000, type: 'inco' },
+        
+        // L-shaped section enemies (Medium)
+        { x: 3700, y: canvas.height - 600 - 100, width: 100, height: 100, speed: 3, direction: 1, startX: 3700, endX: 3900, platformY: canvas.height - 600 - 100, lastShot: 0, shootDelay: 2000, type: 'inco' },
+        
+        // Mixed structures enemies (Hard)
+        { x: 5600, y: canvas.height - 450 - 200, width: 100, height: 100, speed: 3, direction: 1, startX: 5600, endX: 5800, platformY: canvas.height - 450 - 200, lastShot: 0, shootDelay: 2000, type: 'inco' },
+        
+        // Complex L-shaped enemies (Expert)
+        { x: 12200, y: canvas.height - 400 - 100, width: 100, height: 100, speed: 4, direction: 1, startX: 6200, endX: 6800, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'gun' },
+        { x: 6400, y: canvas.height - 400 - 100, width: 100, height: 100, speed: 4, direction: -1, startX: 6400, endX: 6200, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'inco' },
+        { x: 11600, y: canvas.height - 400 - 100, width: 100, height: 100, speed: 4, direction: 1, startX: 6600, endX: 7000, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'gun' },
+        { x: 7000, y: canvas.height - 400 - 100, width: 100, height: 100, speed: 4, direction: 1, startX: 7000, endX: 7400, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'gun' },
+        
+        // Fourth frame enemies (3 enemies) - Walking up and down
+        { x: 16600, y: canvas.height - 800 - 1000, width: 100, height: 100, speed: 2, direction: -1, startX: 7600, endX: 7600, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'gun', vertical: true, startY: canvas.height - 400 - 100, endY: canvas.height - 200 - 100 },
+        { x: 7800, y: canvas.height - 400 - 100, width: 100, height: 100, speed: 2, direction: -1, startX: 7800, endX: 7800, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'inco', vertical: true, startY: canvas.height - 400 - 100, endY: canvas.height - 200 - 100 },
+        { x: 18000, y: canvas.height - 600 - 1000, width: 100, height: 100, speed: 2, direction: -1, startX: 8000, endX: 8000, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'gun', vertical: true, startY: canvas.height - 400 - 100, endY: canvas.height - 200 - 100 },
+        { x: 19000, y: canvas.height - 600 - 1000, width: 100, height: 100, speed: 2, direction: -1, startX: 9000, endX: 8000, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'inco', vertical: true, startY: canvas.height - 400 - 100, endY: canvas.height - 200 - 100 },
+        { x: 19500, y: canvas.height - 600 - 1000, width: 100, height: 100, speed: 2, direction: -1, startX: 10000, endX: 8000, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'gun', vertical: true, startY: canvas.height - 400 - 100, endY: canvas.height - 200 - 100 },
+        { x: 20000, y: canvas.height - 600 - 1000, width: 100, height: 100, speed: 2, direction: -1, startX: 8000, endX: 8000, platformY: canvas.height - 400 - 100, lastShot: 0, shootDelay: 2000, type: 'inco', vertical: true, startY: canvas.height - 400 - 100, endY: canvas.height - 200 - 100 }
+    );
+    
+    // Clear bullets
+    bullets.length = 0;
+    playerBullets.length = 0;
 }
 
 // Check coin collection
@@ -641,6 +682,7 @@ function checkCoinCollection() {
             coin.collected = true;
             if (coin.isSpecial) {
                 player.score += 150;  // Add 150 points for special coin
+                player.gameWon = true;  // Set game won state
             } else {
                 player.score += 2;  // Regular coins give 2 points
             }
@@ -1192,6 +1234,11 @@ function draw() {
     
     // Draw stars at top (not affected by camera)
     drawStars();
+    
+    // Draw win screen if game is won
+    if (player.gameWon) {
+        drawWinScreen();
+    }
 }
 
 // Initialize game
@@ -1210,3 +1257,30 @@ function gameLoop() {
 // Start the game
 initGame();  // Initialize game first
 gameLoop();  // Then start the game loop
+
+// Add drawWinScreen function
+function drawWinScreen() {
+    ctx.save();
+    
+    // Semi-transparent background
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // Win message
+    ctx.fillStyle = '#0000ff';
+    ctx.font = 'bold 48px "Comic Sans MS"';
+    ctx.textAlign = 'center';
+    ctx.fillText('Level Complete!', canvas.width/2, canvas.height/2 - 50);
+    
+    // Stats
+    ctx.fillStyle = '#FFFFFF';
+    ctx.font = 'bold 24px "Comic Sans MS"';
+    ctx.fillText(`Final Score: ${player.score}`, canvas.width/2, canvas.height/2 + 20);
+    ctx.fillText(`Deaths: ${player.deaths}`, canvas.width/2, canvas.height/2 + 60);
+    
+    // Restart message
+    ctx.font = 'bold 20px "Comic Sans MS"';
+    ctx.fillText('Press R to Restart', canvas.width/2, canvas.height/2 + 120);
+    
+    ctx.restore();
+}
