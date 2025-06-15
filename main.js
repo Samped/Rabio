@@ -1464,6 +1464,7 @@ function createPopupScreen() {
         overlay.remove();
         gameStarted = true;
         playBackgroundMusic();
+        showMobileControls(); // Show mobile controls only after game starts
     };
 
     popup.appendChild(startButton);
@@ -1473,12 +1474,16 @@ function createPopupScreen() {
 
 // Add mobile controls
 function createMobileControls() {
+    // Prevent duplicate controls
+    if (document.getElementById('mobileControls')) return;
     const controls = document.createElement('div');
+    controls.id = 'mobileControls'; // Give it an ID so we can show/hide later
     controls.style.position = 'fixed';
     controls.style.bottom = '20px';
     controls.style.left = '50%';
     controls.style.transform = 'translateX(-50%)';
-    controls.style.display = 'flex';
+    controls.style.display = 'none'; // Initially hidden
+    controls.style.flexDirection = 'column';
     controls.style.gap = '20px';
     controls.style.zIndex = '1000';
 
@@ -1579,10 +1584,16 @@ function createMobileControls() {
     controls.appendChild(movementControls);
     controls.appendChild(actionControls);
 
-    // Only show controls on mobile devices
+    // Only add controls to DOM on mobile devices
     if ('ontouchstart' in window) {
         document.body.appendChild(controls);
     }
+}
+
+// Show controls when game starts
+function showMobileControls() {
+    const controls = document.getElementById('mobileControls');
+    if (controls) controls.style.display = 'flex';
 }
 
 // Add viewport meta tag for mobile devices
