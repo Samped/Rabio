@@ -1539,7 +1539,7 @@ function createMobileControls() {
     rightBtn.appendChild(rightImg);
     rightBtn.style.width = '90px';
     rightBtn.style.height = '90px';
-    rightBtn.style.fontSize = '48px';
+    rightBtn.style.fontSize = '44px';
     rightBtn.style.backgroundColor = 'transparent';
     rightBtn.style.border = 'none';
     rightBtn.style.borderRadius = '0';
@@ -1566,6 +1566,7 @@ function createMobileControls() {
     jumpBtn.style.touchAction = 'manipulation';
     jumpBtn.style.marginTop = '-10px'; // Bring jump button further inside
     jumpBtn.style.marginLeft = '20px'; // Shift jump button inside (to the right)
+    jumpBtn.style.marginBottom = '25px'
 
     // Shoot button
     const shootBtn = document.createElement('button');
@@ -1585,7 +1586,8 @@ function createMobileControls() {
     shootBtn.style.cursor = 'pointer';
     shootBtn.style.touchAction = 'manipulation';
     shootBtn.style.marginTop = '-10px'; 
-    jumpBtn.style.marginLeft = '20px';
+    shootBtn.style.marginLeft = '20px';
+    shootBtn.style.marginBottom = '25px'
 
     // Add touch event listeners
     leftBtn.addEventListener('touchstart', () => keys.ArrowLeft = true);
