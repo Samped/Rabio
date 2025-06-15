@@ -1685,3 +1685,28 @@ function startGame() {
     handleMobileControls();
     // ... rest of your game start logic ...
 }
+
+// Prevent image dragging for controller buttons
+function preventImageDrag() {
+    const controllerImages = document.querySelectorAll('#controller img');
+    controllerImages.forEach(img => {
+        img.setAttribute('draggable', 'false');
+        img.style.userSelect = 'none';
+        img.style.webkitUserSelect = 'none';
+        img.style.webkitUserDrag = 'none';
+        img.style.khtmlUserDrag = 'none';
+        img.style.mozUserDrag = 'none';
+        img.style.oUserDrag = 'none';
+        img.style.userDrag = 'none';
+    });
+}
+
+// Call this when the game starts
+function startGame() {
+    gameState = 'playing';
+    preventImageDrag();
+    // ... rest of your existing startGame code ...
+}
+
+// Initialize on load
+window.addEventListener('load', preventImageDrag);
