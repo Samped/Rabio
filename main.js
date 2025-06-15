@@ -1645,7 +1645,7 @@ function adjustGameHeightForMobile() {
         const gameContainer = document.getElementById('gameContainer') || document.querySelector('canvas');
         if (gameContainer) {
             const vh = window.innerHeight;
-            const adjustedHeight = vh - 80; // Subtract some pixels for mobile UI chrome
+            const adjustedHeight = vh - 20; // Subtract some pixels for mobile UI chrome
             gameContainer.style.height = `${adjustedHeight}px`;
             gameContainer.style.maxHeight = `${adjustedHeight}px`;
             gameContainer.style.overflow = 'hidden';
