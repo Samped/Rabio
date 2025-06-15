@@ -1493,6 +1493,7 @@ function createMobileControls() {
     leftControls.style.display = 'flex';
     leftControls.style.flexDirection = 'column';
     leftControls.style.gap = '10px';
+    leftControls.style.alignItems = 'center'; // Center the buttons horizontally
 
     // Right side controls
     const rightControls = document.createElement('div');
@@ -1502,6 +1503,7 @@ function createMobileControls() {
     rightControls.style.display = 'flex';
     rightControls.style.flexDirection = 'column';
     rightControls.style.gap = '10px';
+    rightControls.style.alignItems = 'center'; // Center the buttons horizontally
 
     // Left button
     const leftBtn = document.createElement('button');
@@ -1509,8 +1511,8 @@ function createMobileControls() {
     const leftImg = document.createElement('img');
     leftImg.src = 'assets/ui/left-arrow.png';
     leftImg.alt = 'Left';
-    leftImg.style.width = '48px';
-    leftImg.style.height = '48px';
+    leftImg.style.width = '70px';
+    leftImg.style.height = '70px';
     leftBtn.appendChild(leftImg);
     leftBtn.style.width = '90px';
     leftBtn.style.height = '90px';
@@ -1527,8 +1529,8 @@ function createMobileControls() {
     const rightImg = document.createElement('img');
     rightImg.src = 'assets/ui/right-arrow.png';
     rightImg.alt = 'Right';
-    rightImg.style.width = '48px';
-    rightImg.style.height = '48px';
+    rightImg.style.width = '70px';
+    rightImg.style.height = '70px';
     rightBtn.appendChild(rightImg);
     rightBtn.style.width = '90px';
     rightBtn.style.height = '90px';
@@ -1545,8 +1547,8 @@ function createMobileControls() {
     const jumpImg = document.createElement('img');
     jumpImg.src = 'assets/ui/jump-arrow.png';
     jumpImg.alt = 'Jump';
-    jumpImg.style.width = '48px';
-    jumpImg.style.height = '48px';
+    jumpImg.style.width = '55px';
+    jumpImg.style.height = '55px';
     jumpBtn.appendChild(jumpImg);
     jumpBtn.style.width = '100px';
     jumpBtn.style.height = '100px';
@@ -1557,14 +1559,16 @@ function createMobileControls() {
     jumpBtn.style.color = 'white';
     jumpBtn.style.cursor = 'pointer';
     jumpBtn.style.touchAction = 'manipulation';
+    jumpBtn.style.marginTop = '-10px'; // Bring jump button further inside
+    jumpBtn.style.marginLeft = '20px'; // Shift jump button inside (to the right)
 
     // Shoot button
     const shootBtn = document.createElement('button');
     const shootImg = document.createElement('img');
     shootImg.src = 'assets/ui/shoot.png';
     shootImg.alt = 'Shoot';
-    shootImg.style.width = '48px';
-    shootImg.style.height = '48px';
+    shootImg.style.width = '55px';
+    shootImg.style.height = '55px';
     shootBtn.appendChild(shootImg);
     shootBtn.style.width = '90px';
     shootBtn.style.height = '90px';
@@ -1575,6 +1579,8 @@ function createMobileControls() {
     shootBtn.style.color = 'white';
     shootBtn.style.cursor = 'pointer';
     shootBtn.style.touchAction = 'manipulation';
+    shootBtn.style.marginTop = '-10px'; 
+    jumpBtn.style.marginLeft = '20px';
 
     // Add touch event listeners
     leftBtn.addEventListener('touchstart', () => keys.ArrowLeft = true);
