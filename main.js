@@ -1656,3 +1656,32 @@ function adjustGameHeightForMobile() {
 }
 window.addEventListener('load', adjustGameHeightForMobile);
 window.addEventListener('resize', adjustGameHeightForMobile);
+
+// Handles controller visibility based on device type
+function handleMobileControls() {
+    const controller = document.getElementById('controller');
+
+    if (!controller) return;
+
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+        controller.style.display = 'flex';
+        controller.style.visibility = 'visible';
+        controller.style.pointerEvents = 'auto';
+    } else {
+        controller.style.display = 'none';
+        controller.style.visibility = 'hidden';
+        controller.style.pointerEvents = 'none';
+    }
+}
+
+// Initialize control visibility on load and orientation change
+window.addEventListener('load', handleMobileControls);
+window.addEventListener('resize', handleMobileControls);
+window.addEventListener('orientationchange', handleMobileControls);
+
+// Call it when the game starts too
+function startGame() {
+    gameState = 'playing';
+    handleMobileControls();
+    // ... rest of your game start logic ...
+}
