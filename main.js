@@ -3,8 +3,13 @@ const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
 // Set canvas size
-canvas.width = 1920;
-canvas.height = 1080;
+if (/Mobi|Android/i.test(navigator.userAgent)) {
+    canvas.width = 1920;
+    canvas.height = 1070; // 10px less for mobile
+} else {
+    canvas.width = 1920;
+    canvas.height = 1080;
+}
 
 // Load images
 const playerImage = new Image();
@@ -1570,8 +1575,8 @@ function createMobileControls() {
     shootImg.style.width = '55px';
     shootImg.style.height = '55px';
     shootBtn.appendChild(shootImg);
-    shootBtn.style.width = '90px';
-    shootBtn.style.height = '90px';
+    shootBtn.style.width = '100px';
+    shootBtn.style.height = '100px';
     shootBtn.style.fontSize = '48px';
     shootBtn.style.backgroundColor = 'transparent';
     shootBtn.style.border = 'none';
@@ -1634,4 +1639,18 @@ const meta = document.createElement('meta');
 meta.name = 'viewport';
 meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
 document.head.appendChild(meta);
-z
+
+function adjustGameHeightForMobile() {
+    if ('ontouchstart' in window) {
+        const gameContainer = document.getElementById('gameContainer') || document.querySelector('canvas');
+        if (gameContainer) {
+            const vh = window.innerHeight;
+            const adjustedHeight = vh - 80; // Subtract some pixels for mobile UI chrome
+            gameContainer.style.height = `${adjustedHeight}px`;
+            gameContainer.style.maxHeight = `${adjustedHeight}px`;
+            gameContainer.style.overflow = 'hidden';
+        }
+    }
+}
+window.addEventListener('load', adjustGameHeightForMobile);
+window.addEventListener('resize', adjustGameHeightForMobile);
