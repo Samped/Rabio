@@ -1480,71 +1480,98 @@ function createMobileControls() {
     controls.id = 'mobileControls'; // Give it an ID so we can show/hide later
     controls.style.position = 'fixed';
     controls.style.bottom = '20px';
-    controls.style.left = '50%';
-    controls.style.transform = 'translateX(-50%)';
+    controls.style.left = '0';
+    controls.style.right = '0';
     controls.style.display = 'none'; // Initially hidden
-    controls.style.flexDirection = 'column';
-    controls.style.gap = '20px';
     controls.style.zIndex = '1000';
 
-    // Movement controls
-    const movementControls = document.createElement('div');
-    movementControls.style.display = 'flex';
-    movementControls.style.gap = '10px';
+    // Left side controls
+    const leftControls = document.createElement('div');
+    leftControls.style.position = 'fixed';
+    leftControls.style.left = '20px';
+    leftControls.style.bottom = '20px';
+    leftControls.style.display = 'flex';
+    leftControls.style.flexDirection = 'column';
+    leftControls.style.gap = '10px';
+
+    // Right side controls
+    const rightControls = document.createElement('div');
+    rightControls.style.position = 'fixed';
+    rightControls.style.right = '20px';
+    rightControls.style.bottom = '20px';
+    rightControls.style.display = 'flex';
+    rightControls.style.flexDirection = 'column';
+    rightControls.style.gap = '10px';
 
     // Left button
     const leftBtn = document.createElement('button');
-    leftBtn.innerHTML = '⬅️';
-    leftBtn.style.width = '60px';
-    leftBtn.style.height = '60px';
-    leftBtn.style.fontSize = '24px';
-    leftBtn.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-    leftBtn.style.border = '2px solid #0000ff';
-    leftBtn.style.borderRadius = '50%';
+    // Use image for left arrow
+    const leftImg = document.createElement('img');
+    leftImg.src = 'assets/ui/left-arrow.png';
+    leftImg.alt = 'Left';
+    leftImg.style.width = '48px';
+    leftImg.style.height = '48px';
+    leftBtn.appendChild(leftImg);
+    leftBtn.style.width = '90px';
+    leftBtn.style.height = '90px';
+    leftBtn.style.fontSize = '44px';
+    leftBtn.style.backgroundColor = 'transparent';
+    leftBtn.style.border = 'none';
+    leftBtn.style.borderRadius = '0';
     leftBtn.style.color = 'white';
     leftBtn.style.cursor = 'pointer';
     leftBtn.style.touchAction = 'manipulation';
 
     // Right button
     const rightBtn = document.createElement('button');
-    rightBtn.innerHTML = '➡️';
-    rightBtn.style.width = '60px';
-    rightBtn.style.height = '60px';
-    rightBtn.style.fontSize = '24px';
-    rightBtn.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-    rightBtn.style.border = '2px solid #0000ff';
-    rightBtn.style.borderRadius = '50%';
+    const rightImg = document.createElement('img');
+    rightImg.src = 'assets/ui/right-arrow.png';
+    rightImg.alt = 'Right';
+    rightImg.style.width = '48px';
+    rightImg.style.height = '48px';
+    rightBtn.appendChild(rightImg);
+    rightBtn.style.width = '90px';
+    rightBtn.style.height = '90px';
+    rightBtn.style.fontSize = '48px';
+    rightBtn.style.backgroundColor = 'transparent';
+    rightBtn.style.border = 'none';
+    rightBtn.style.borderRadius = '0';
     rightBtn.style.color = 'white';
     rightBtn.style.cursor = 'pointer';
     rightBtn.style.touchAction = 'manipulation';
 
-    // Action controls
-    const actionControls = document.createElement('div');
-    actionControls.style.display = 'flex';
-    actionControls.style.gap = '10px';
-
     // Jump button
     const jumpBtn = document.createElement('button');
-    jumpBtn.innerHTML = '⬆️';
-    jumpBtn.style.width = '60px';
-    jumpBtn.style.height = '60px';
-    jumpBtn.style.fontSize = '24px';
-    jumpBtn.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-    jumpBtn.style.border = '2px solid #0000ff';
-    jumpBtn.style.borderRadius = '50%';
+    const jumpImg = document.createElement('img');
+    jumpImg.src = 'assets/ui/jump-arrow.png';
+    jumpImg.alt = 'Jump';
+    jumpImg.style.width = '48px';
+    jumpImg.style.height = '48px';
+    jumpBtn.appendChild(jumpImg);
+    jumpBtn.style.width = '100px';
+    jumpBtn.style.height = '100px';
+    jumpBtn.style.fontSize = '48px';
+    jumpBtn.style.backgroundColor = 'transparent';
+    jumpBtn.style.border = 'none';
+    jumpBtn.style.borderRadius = '0';
     jumpBtn.style.color = 'white';
     jumpBtn.style.cursor = 'pointer';
     jumpBtn.style.touchAction = 'manipulation';
 
     // Shoot button
     const shootBtn = document.createElement('button');
-    shootBtn.innerHTML = '🎯';
-    shootBtn.style.width = '60px';
-    shootBtn.style.height = '60px';
-    shootBtn.style.fontSize = '24px';
-    shootBtn.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-    shootBtn.style.border = '2px solid #0000ff';
-    shootBtn.style.borderRadius = '50%';
+    const shootImg = document.createElement('img');
+    shootImg.src = 'assets/ui/shoot.png';
+    shootImg.alt = 'Shoot';
+    shootImg.style.width = '48px';
+    shootImg.style.height = '48px';
+    shootBtn.appendChild(shootImg);
+    shootBtn.style.width = '90px';
+    shootBtn.style.height = '90px';
+    shootBtn.style.fontSize = '48px';
+    shootBtn.style.backgroundColor = 'transparent';
+    shootBtn.style.border = 'none';
+    shootBtn.style.borderRadius = '0';
     shootBtn.style.color = 'white';
     shootBtn.style.cursor = 'pointer';
     shootBtn.style.touchAction = 'manipulation';
@@ -1577,12 +1604,12 @@ function createMobileControls() {
     });
 
     // Add buttons to controls
-    movementControls.appendChild(leftBtn);
-    movementControls.appendChild(rightBtn);
-    actionControls.appendChild(jumpBtn);
-    actionControls.appendChild(shootBtn);
-    controls.appendChild(movementControls);
-    controls.appendChild(actionControls);
+    leftControls.appendChild(leftBtn);
+    leftControls.appendChild(jumpBtn); // Jump now under left
+    rightControls.appendChild(rightBtn);
+    rightControls.appendChild(shootBtn); // Shoot now under right
+    controls.appendChild(leftControls);
+    controls.appendChild(rightControls);
 
     // Only add controls to DOM on mobile devices
     if ('ontouchstart' in window) {
@@ -1601,3 +1628,4 @@ const meta = document.createElement('meta');
 meta.name = 'viewport';
 meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
 document.head.appendChild(meta);
+z
