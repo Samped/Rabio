@@ -1482,13 +1482,65 @@ function createMobileControls() {
     // Prevent duplicate controls
     if (document.getElementById('mobileControls')) return;
     const controls = document.createElement('div');
-    controls.id = 'mobileControls'; // Give it an ID so we can show/hide later
+    controls.id = 'mobileControls';
     controls.style.position = 'fixed';
     controls.style.bottom = '20px';
     controls.style.left = '0';
     controls.style.right = '0';
-    controls.style.display = 'none'; // Initially hidden
+    controls.style.display = 'none';
     controls.style.zIndex = '1000';
+
+    // Add CSS for the controls
+    const style = document.createElement('style');
+    style.textContent = `
+        .control-btn {
+            width: 90px;
+            height: 90px;
+            background: transparent;
+            border: none;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+        .arrow-left {
+            width: 0;
+            height: 0;
+            border-top: 30px solid transparent;
+            border-bottom: 30px solid transparent;
+            border-right: 50px solid #00aaff;
+        }
+        .arrow-right {
+            width: 0;
+            height: 0;
+            border-top: 30px solid transparent;
+            border-bottom: 30px solid transparent;
+            border-left: 50px solid #00aaff;
+        }
+        .arrow-up {
+            width: 0;
+            height: 0;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 50px solid #00aaff;
+        }
+        .shoot-circle {
+            width: 50px;
+            height: 50px;
+            background: #00aaff;
+            border-radius: 50%;
+        }
+        .control-btn:active .arrow-left,
+        .control-btn:active .arrow-right,
+        .control-btn:active .arrow-up,
+        .control-btn:active .shoot-circle {
+            transform: scale(0.95);
+            opacity: 0.8;
+        }
+    `;
+    document.head.appendChild(style);
 
     // Left side controls
     const leftControls = document.createElement('div');
@@ -1498,7 +1550,7 @@ function createMobileControls() {
     leftControls.style.display = 'flex';
     leftControls.style.flexDirection = 'column';
     leftControls.style.gap = '10px';
-    leftControls.style.alignItems = 'center'; // Center the buttons horizontally
+    leftControls.style.alignItems = 'center';
 
     // Right side controls
     const rightControls = document.createElement('div');
@@ -1508,86 +1560,35 @@ function createMobileControls() {
     rightControls.style.display = 'flex';
     rightControls.style.flexDirection = 'column';
     rightControls.style.gap = '10px';
-    rightControls.style.alignItems = 'center'; // Center the buttons horizontally
+    rightControls.style.alignItems = 'center';
 
     // Left button
     const leftBtn = document.createElement('button');
-    // Use image for left arrow
-    const leftImg = document.createElement('img');
-    leftImg.src = 'assets/ui/left-arrow.png';
-    leftImg.alt = 'Left';
-    leftImg.style.width = '70px';
-    leftImg.style.height = '70px';
-    leftBtn.appendChild(leftImg);
-    leftBtn.style.width = '90px';
-    leftBtn.style.height = '90px';
-    leftBtn.style.fontSize = '44px';
-    leftBtn.style.backgroundColor = 'transparent';
-    leftBtn.style.border = 'none';
-    leftBtn.style.borderRadius = '0';
-    leftBtn.style.color = 'white';
-    leftBtn.style.cursor = 'pointer';
-    leftBtn.style.touchAction = 'manipulation';
+    leftBtn.className = 'control-btn';
+    const leftArrow = document.createElement('div');
+    leftArrow.className = 'arrow-left';
+    leftBtn.appendChild(leftArrow);
 
     // Right button
     const rightBtn = document.createElement('button');
-    const rightImg = document.createElement('img');
-    rightImg.src = 'assets/ui/right-arrow.png';
-    rightImg.alt = 'Right';
-    rightImg.style.width = '70px';
-    rightImg.style.height = '70px';
-    rightBtn.appendChild(rightImg);
-    rightBtn.style.width = '90px';
-    rightBtn.style.height = '90px';
-    rightBtn.style.fontSize = '44px';
-    rightBtn.style.backgroundColor = 'transparent';
-    rightBtn.style.border = 'none';
-    rightBtn.style.borderRadius = '0';
-    rightBtn.style.color = 'white';
-    rightBtn.style.cursor = 'pointer';
-    rightBtn.style.touchAction = 'manipulation';
+    rightBtn.className = 'control-btn';
+    const rightArrow = document.createElement('div');
+    rightArrow.className = 'arrow-right';
+    rightBtn.appendChild(rightArrow);
 
     // Jump button
     const jumpBtn = document.createElement('button');
-    const jumpImg = document.createElement('img');
-    jumpImg.src = 'assets/ui/jump-arrow.png';
-    jumpImg.alt = 'Jump';
-    jumpImg.style.width = '55px';
-    jumpImg.style.height = '55px';
-    jumpBtn.appendChild(jumpImg);
-    jumpBtn.style.width = '100px';
-    jumpBtn.style.height = '100px';
-    jumpBtn.style.fontSize = '48px';
-    jumpBtn.style.backgroundColor = 'transparent';
-    jumpBtn.style.border = 'none';
-    jumpBtn.style.borderRadius = '0';
-    jumpBtn.style.color = 'white';
-    jumpBtn.style.cursor = 'pointer';
-    jumpBtn.style.touchAction = 'manipulation';
-    jumpBtn.style.marginTop = '-10px'; // Bring jump button further inside
-    jumpBtn.style.marginLeft = '20px'; // Shift jump button inside (to the right)
-    jumpBtn.style.marginBottom = '25px'
+    jumpBtn.className = 'control-btn';
+    const upArrow = document.createElement('div');
+    upArrow.className = 'arrow-up';
+    jumpBtn.appendChild(upArrow);
 
     // Shoot button
     const shootBtn = document.createElement('button');
-    const shootImg = document.createElement('img');
-    shootImg.src = 'assets/ui/shoot.png';
-    shootImg.alt = 'Shoot';
-    shootImg.style.width = '55px';
-    shootImg.style.height = '55px';
-    shootBtn.appendChild(shootImg);
-    shootBtn.style.width = '100px';
-    shootBtn.style.height = '100px';
-    shootBtn.style.fontSize = '48px';
-    shootBtn.style.backgroundColor = 'transparent';
-    shootBtn.style.border = 'none';
-    shootBtn.style.borderRadius = '0';
-    shootBtn.style.color = 'white';
-    shootBtn.style.cursor = 'pointer';
-    shootBtn.style.touchAction = 'manipulation';
-    shootBtn.style.marginTop = '-10px'; 
-    shootBtn.style.marginLeft = '20px';
-    shootBtn.style.marginBottom = '25px'
+    shootBtn.className = 'control-btn';
+    const shootCircle = document.createElement('div');
+    shootCircle.className = 'shoot-circle';
+    shootBtn.appendChild(shootCircle);
 
     // Add touch event listeners
     leftBtn.addEventListener('touchstart', () => keys.ArrowLeft = true);
@@ -1618,9 +1619,9 @@ function createMobileControls() {
 
     // Add buttons to controls
     leftControls.appendChild(leftBtn);
-    leftControls.appendChild(jumpBtn); // Jump now under left
+    leftControls.appendChild(jumpBtn);
     rightControls.appendChild(rightBtn);
-    rightControls.appendChild(shootBtn); // Shoot now under right
+    rightControls.appendChild(shootBtn);
     controls.appendChild(leftControls);
     controls.appendChild(rightControls);
 
