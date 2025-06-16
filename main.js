@@ -323,7 +323,7 @@ const platforms = [
 
 // Coin properties
 const coins = [];
-const coinSize = 40;  // Reduced from 60 to 40
+const coinSize = 55;  // Reduced from 60 to 40
 const coinColor = '#FFD700';  // Gold color
 let coinFlip = 0;  // Track flip angle
 
@@ -542,8 +542,8 @@ function createCoins() {
 const player = {
     x: 100,
     y: canvas.height - groundHeight - 50,
-    width: 100,
-    height: 100,
+    width: 110,
+    height: 120,
     velocityX: 0,
     velocityY: 0,
     speed: 8,
@@ -691,11 +691,12 @@ function checkPlayerDeath() {
 
 // Reset player position
 function resetPlayer() {
-    player.x = 100;
-    player.y = canvas.height - groundHeight - 50;
+    player.x = 340;  // Changed from 100 to 300 to move player more forward
+    player.y = 100;
     player.velocityX = 0;
     player.velocityY = 0;
-    player.isDead = false;
+    player.jumpCount = 0;
+    player.facingRight = true;
 }
 
 // Reset game
