@@ -1511,6 +1511,20 @@ function createMobileControls() {
             border-top: 30px solid transparent;
             border-bottom: 30px solid transparent;
             border-right: 50px solid #00aaff;
+            border-left: 0;
+            position: relative;
+        }
+        .arrow-left::before {
+            content: '';
+            position: absolute;
+            top: -31px;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-top: 31px solid transparent;
+            border-bottom: 31px solid transparent;
+            border-right: 51px solid #000;
+            z-index: -1;
         }
         .arrow-right {
             width: 0;
@@ -1518,19 +1532,36 @@ function createMobileControls() {
             border-top: 30px solid transparent;
             border-bottom: 30px solid transparent;
             border-left: 50px solid #00aaff;
+            border-right: 0;
+            position: relative;
         }
-        .arrow-up {
+        .arrow-right::before {
+            content: '';
+            position: absolute;
+            top: -31px;
+            left: -51px;
             width: 0;
             height: 0;
-            border-left: 30px solid transparent;
-            border-right: 30px solid transparent;
-            border-bottom: 50px solid #00aaff;
+            border-top: 31px solid transparent;
+            border-bottom: 31px solid transparent;
+            border-left: 51px solid #000;
+            z-index: -1;
+        }
+        .arrow-up {
+            width: 50px;
+            height: 50px;
+            background: #00aaff;
+            border-radius: 50%;
+            position: relative;
+            border: 2px solid #000;
         }
         .shoot-circle {
             width: 50px;
             height: 50px;
             background: #00aaff;
             border-radius: 50%;
+            position: relative;
+            border: 2px solid #000;
         }
         .control-btn:active .arrow-left,
         .control-btn:active .arrow-right,
