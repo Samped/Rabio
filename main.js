@@ -1743,3 +1743,27 @@ function startGame() {
 
 // Initialize on load
 window.addEventListener('load', preventImageDrag);
+
+// Prevent highlighting on long press for mobile
+function preventMobileHighlight() {
+    // Add CSS to prevent text selection and touch callout
+    const style = document.createElement('style');
+    style.textContent = `
+        * {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+// Initialize on load
+window.addEventListener('load', function() {
+    preventImageDrag();
+    preventMobileHighlight();
+});
