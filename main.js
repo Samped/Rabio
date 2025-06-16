@@ -542,8 +542,8 @@ function createCoins() {
 const player = {
     x: 100,
     y: canvas.height - groundHeight - 50,
-    width: 110,
-    height: 120,
+    width: 100,
+    height: 100,
     velocityX: 0,
     velocityY: 0,
     speed: 8,
